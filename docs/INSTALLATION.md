@@ -12,7 +12,7 @@ python3 tests/check_palette.py
 python3 app/build.py
 ```
 
-`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.11.7.apk`; generated dependencies and APKs are ignored by Git.
+`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.12.0.apk`; generated dependencies and APKs are ignored by Git.
 
 ## Signing and retained data
 
@@ -30,7 +30,7 @@ Select the actual device explicitly, especially when an emulator is also running
 
 ```sh
 adb devices
-adb -s DEVICE install -r dist/TV-Dashboard-0.11.7.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.12.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -72,7 +72,7 @@ All TVs use the same application source. Since 0.11.7 the reference setup is the
 | ARD / ZDF app tiles | Off; two reserved positions follow System | Startseite → Mediathek-Schnellzugriffe |
 | Language / clock and text fonts | German / default system fonts | Design → Sprache & Schrift |
 
-For the second-TV arrangement, hide cameras, disable Hue/UniFi, enable the installed ARD/ZDF apps, then move those tiles after Ambilight in Design. Save each form. This yields Ambilight / ARD / ZDF above Television / Devices / System; names and theme remain your choice. No preset-selection button or automatic provider pairing is involved.
+For the second-TV arrangement, hide cameras, disable Hue/UniFi, enable the installed ARD/ZDF apps, then move those tiles after Ambilight in Design. Save each form. This yields Ambilight / ARD / ZDF above Television / Devices / System; names and theme remain your choice. Since 0.12.0, **Design → Profile → Mediathek** applies this arrangement in one step. **Standard** restores the shared presentation; neither preset pairs a provider. [Custom profiles and scope](PROFILES.md).
 
 An update retains existing per-TV settings, including old tile orders and a second TV's disabled integrations or enabled media tiles. Only missing preferences use the baseline. **Design → Reset** changes the appearance draft only; it does not reset integration flags, app visibility or provider connections. Existing camera-first orders are preserved until explicitly rearranged or reset and saved.
 

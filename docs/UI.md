@@ -136,3 +136,7 @@ At the same 390 px synthetic fixture, the first Home form moved from approximate
 ![Four colour-key settings](images/web-shortcuts.jpg)
 
 [Phone view](images/web-shortcuts-mobile.jpg). Native key handling and its Home/System/Apps scope are unchanged; physical remote forwarding remains a separate validation boundary.
+
+## Profile picker (0.12.0)
+
+Design starts with two one-click preset cards and a custom-profile list/editor. Current correspondence is separate from editable snapshots; custom names render literally. Editing a profile uses the normal section editors, followed by updating its saved snapshot. Inline confirmations remain in the card, and narrow layouts stack the cards/controls without horizontal scrolling. [Scope and full workflow](PROFILES.md). [Desktop](images/web-profiles.png) · [Phone](images/web-profiles-mobile.png).

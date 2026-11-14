@@ -145,3 +145,9 @@ The only production Java change is the release metadata. CSS adds a compact layo
 The existing `remote-form` moved from Home into an eighth `shortcuts` panel. It still writes the same complete, allowlisted `/api/remote/configure` payload. The native shortcut model, permissions and stored map are unchanged. `renderRemotePreview` uses owned translated labels and the current selector values; a camera warning uses the saved `state.display.camera`, not an unsaved Home draft.
 
 Default reset changes only the local draft and dirty state. During POST, all four selectors and the reset button are locked; `finally` releases selectors on success or failure. Saving returns the acknowledged map. Language refresh regenerates preview labels without resetting selectors. Existing independent-form/session/origin handling remains intact.
+
+## Per-TV profiles (0.12.0)
+
+`ProfileConfig` validates a complete provider-free six-section payload and generates immutable Standard/Mediathek presets. `DashboardProfiles` stores up to eight custom snapshots in `dashboard_profiles_v1`; create/replace captures saved settings on the server, while rename/delete never apply settings. Apply validates everything before one preference commit and revision increment. Existing preference listeners update Home, language/fonts and disabled integration pages. It never invokes light/provider/input controllers or changes identity/activation keys. Matching is derived from current configuration rather than a sticky mode flag. [Data/API contract](PROFILES.md#storage-and-api).
+
+The web Design card loads profiles on demand. It uses text nodes for custom names, preserves unrelated drafts, gates conflicting covered-form saves and discards stale list replies. Inline confirmation protects draft replacement and snapshot update/deletion. Stored settings are captured separately from open drafts; built-ins remain immutable. There is no import/export or cross-device synchronization.

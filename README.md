@@ -6,7 +6,7 @@ A lightweight dashboard for Philips Android TV: cameras, Ambilight, Philips Hue,
 
 Install as an Android app and optionally assign it as Home.
 
-**0.11.7 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
+**0.12.0 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
 
 ## A look at the interface
 
@@ -83,6 +83,10 @@ The Hue brightness slider batches input and sends one write for a coalesced gest
 
 The primary-TV presentation is the **shared project baseline**: Nordlicht, Ambilight first, cameras/Hue enabled and ARD/ZDF off. Other locations use the same app with independent web settings. Updates retain their saved choices. [Defaults and second-TV setup](docs/INSTALLATION.md#shared-project-baseline-and-per-tv-settings).
 
+Under **Design → Profile**, choose **Standard**, **Mediathek** or up to eight custom snapshots. Save, rename and update your own setup; provider credentials and TV names stay separate. [Profile guide](docs/PROFILES.md).
+
+![Standard, media and custom dashboard profiles](docs/images/web-profiles.png)
+
 ## Tested hardware
 
 | Target | Verified scope |
@@ -103,7 +107,7 @@ Requirements: Python 3, `curl`, JDK 21, Android SDK platform `android-34`, Build
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.11.7.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.12.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -125,6 +129,8 @@ Replace `DEVICE` with the explicitly selected authorized device. Preserve your s
 | **System → Bildschirmschoner** | Choose a style, date and dim level, or open the full-screen preview. Automatic activation remains a TV/system setting. |
 
 ## Validation and limits
+
+Version 0.12.0 adds local dashboard profiles. Both builds, 38 profile checks and 125 web checks passed. The primary TV passed 28 installation/API/native assertions for profile switching and retention, followed by exact restoration of its original setup. The second TV remains on 0.11.6.
 
 Version 0.11.7 aligns the shared baseline with the primary TV while retaining per-device settings. Both builds, 107 web checks, 1,290,240 layout configurations and sixteen primary-TV update/API/native checks passed. The second TV remains separately verified on 0.11.6.
 

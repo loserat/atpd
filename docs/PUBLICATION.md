@@ -23,7 +23,7 @@ The legacy camera-configuration filename remains intentional because the existin
 
 Each published image has one exact `!/docs/images/...` entry. Do not replace this list with an exception allowing every image in the directory. Review new screenshots for camera content, network details, credentials and other personal data before adding a new exception and staging that image.
 
-The November 13 audit preserved all 26 existing image exceptions. The November 14 publication adds one reviewed synthetic Mediathek settings capture, bringing the exact allowlist to 27 images. No photograph or screenshot from the second physical TV is published. Uppercase or mixed-case image extensions do not bypass the default exclusion. Native XML drawable resources are unaffected.
+The November 13 audit preserved all 26 existing image exceptions. The November 14 publication adds one reviewed synthetic Mediathek settings capture, bringing that publication’s exact allowlist to 27 images. Version 0.12.0 adds two reviewed synthetic profile captures (29 images total). No photograph or screenshot from the second physical TV is published. Uppercase or mixed-case image extensions do not bypass the default exclusion. Native XML drawable resources are unaffected.
 
 ## Reproduce the checks
 

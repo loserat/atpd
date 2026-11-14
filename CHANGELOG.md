@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.0 — 2026-11-14
+
+- Added per-TV Standard/Mediathek presets and up to eight custom dashboard profiles under web Design. Save from the persisted setup, apply, rename, update or delete with strict validation and inline confirmations.
+- Apply layout/visibility, feature/app switches, language/fonts and color keys in one commit. Retain names/models, providers/cameras, light states, screensaver/standby settings and Android configuration. Existing installations are not switched automatically.
+- Added 38 production profile configuration/persistence checks and expanded web checks to 125; browser-tested custom/preset flows, localization and 320–1280 px without overflow. Added a profile guide and reviewed synthetic desktop/phone images.
+- Installed 0.12.0 on the primary TV and passed 28 installation/API/native assertions, including complete profile switching and exact restoration with all test snapshots removed. Providers, names, cameras and activation settings were retained; no light/source action or second-TV update was performed.
+
 ## 0.11.7 — 2026-11-14
 
 - Made the primary-TV presentation the shared fresh-install baseline: Nordlicht, featured rows, Ambilight before cameras/Hue/Television/Devices/System, German and default system fonts. ARD/ZDF remain opt-in; Hue/UniFi remain independently configurable in the local web dashboard.

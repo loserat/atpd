@@ -2,10 +2,10 @@
 """Loopback-only UI preview with synthetic data. No TV/router/light connections."""
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 from pathlib import Path
-import json,time,argparse
+import json,time,argparse,copy,uuid
 parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=9040);args=parser.parse_args()
 page=Path(__file__).resolve().parents[1]/'app/assets/settings/index.html'
-state={'version':'0.11.7','device':{'manufacturer':'Philips','model':'TEST','displayName':'Philips Test TV','productModel':'55TEST/12'},'display':{'camera':True,'clock':True,'date':True,'homeTitle':'Zuhause'},'cameras':[{'id':'fixture-1','name':'Eingang','available':True,'host':'Lokale Quelle','status':'ready'},{'id':'fixture-2','name':'Garten','available':False,'status':'missing'}],'defaultCameraId':'fixture-1'}
+state={'version':'0.12.0','device':{'manufacturer':'Philips','model':'TEST','displayName':'Philips Test TV','productModel':'55TEST/12'},'display':{'camera':True,'clock':True,'date':True,'homeTitle':'Zuhause'},'cameras':[{'id':'fixture-1','name':'Eingang','available':True,'host':'Lokale Quelle','status':'ready'},{'id':'fixture-2','name':'Garten','available':False,'status':'missing'}],'defaultCameraId':'fixture-1'}
 saver={'style':'clock','date':True,'dim':True}
 hue={'configured':True,'connected':True,'host':'10.0.0.2','roomId':'1','roomName':'TV-Zimmer','rooms':[{'id':'1','name':'TV-Zimmer'},{'id':'2','name':'Küche'}]}
 state['interface']={'language':'de','textFont':'sans','clockFont':'sans'}
@@ -13,8 +13,16 @@ state['appearance']={'theme':'nordlicht','layout':'focus','order':['ambilight','
 state['integrations']={'hue':True,'unifi':True}
 state['appShortcuts']={'ard':False,'zdf':False,'ardAvailable':True,'zdfAvailable':True}
 state['remote']={'red':'cameras','green':'ambilight','yellow':'hue','blue':'inputs'}
-def device_info():return {'productModel':state['device'].get('productModel',''),'productModelSource':'stored' if state['device'].get('productModel') else 'unavailable','manufacturer':'Philips','platformModel':'TEST','androidVersion':'8.0.0','apiLevel':26,'securityPatch':'2019-01-01','hardware':'Test hardware','abis':['armeabi-v7a'],'appVersion':'0.11.7','appVersionCode':25,'width':1920,'height':1080,'densityDpi':320,'uptimeMs':7260000,'storageFreeBytes':3000000000,'storageTotalBytes':8000000000,'checkedAt':int(time.time()*1000)}
+def device_info():return {'productModel':state['device'].get('productModel',''),'productModelSource':'stored' if state['device'].get('productModel') else 'unavailable','manufacturer':'Philips','platformModel':'TEST','androidVersion':'8.0.0','apiLevel':26,'securityPatch':'2019-01-01','hardware':'Test hardware','abis':['armeabi-v7a'],'appVersion':'0.12.0','appVersionCode':26,'width':1920,'height':1080,'densityDpi':320,'uptimeMs':7260000,'storageFreeBytes':3000000000,'storageTotalBytes':8000000000,'checkedAt':int(time.time()*1000)}
 automation={'enabled':False,'ready':True,'lastAttemptAt':0,'lastResult':'none'}
+custom_profiles=[]
+def profile_config():
+ return {**{k:copy.deepcopy(state[k]) for k in ['appearance','integrations','interface','remote']},'display':{k:state['display'][k] for k in ['camera','clock','date']},'appShortcuts':{k:state['appShortcuts'][k] for k in ['ard','zdf']}}
+def builtin_profile(media=False):
+ config=profile_config();config['display']={'camera':not media,'clock':True,'date':True};config['appearance']={'theme':'nordlicht','layout':'focus','order':['ambilight','ard','zdf','cameras','hue','tv','inputs','system'] if media else ['ambilight','cameras','hue','tv','inputs','system','ard','zdf']};config['integrations']={'hue':not media,'unifi':not media};config['appShortcuts']={'ard':media,'zdf':media};config['interface']={'language':'de','textFont':'sans','clockFont':'sans'};config['remote']={'red':'cameras','green':'ambilight','yellow':'hue','blue':'inputs'};return config
+def profile_view():
+ current=profile_config();profiles=[{'id':'standard','name':'Standard','builtin':True,'config':builtin_profile()},{'id':'media','name':'Mediathek','builtin':True,'config':builtin_profile(True)}]+copy.deepcopy(custom_profiles)
+ return {'current':current,'profiles':profiles,'activeId':next((p['id'] for p in profiles if p['config']==current),''),'limit':8}
 class Handler(BaseHTTPRequestHandler):
  def log_message(self,*args):pass
  def send(self,data,status=200):
@@ -22,11 +30,12 @@ class Handler(BaseHTTPRequestHandler):
  def do_GET(self):
   if self.path=='/':return self.send(page.read_text().replace('__ATPD_UI_CONFIG__',json.dumps(state['interface'],ensure_ascii=False,separators=(',',':'))).replace('__ATPD_UI_EN__',(page.parents[1]/'i18n/en.json').read_text()).encode())
   if self.path=='/api/state':return self.send(state)
+  if self.path=='/api/profiles':return self.send(profile_view())
   if self.path.startswith('/api/hue/') and not state['integrations']['hue']:return self.send({'message':'Hue ist auf diesem TV deaktiviert.'},409)
   if self.path.startswith('/api/unifi/') and not state['integrations']['unifi']:return self.send({'message':'UniFi ist auf diesem TV deaktiviert.'},409)
   if self.path=='/api/screensaver/state':return self.send(saver)
   if self.path=='/api/device/state':return self.send(device_info())
-  if self.path=='/api/device/diagnostic':return self.send({'format':'tv-dashboard-diagnostics-v1','device':{'manufacturer':'Philips','platformModel':'TEST','appVersion':'0.11.7'},'network':{'transport':'WLAN','internet':'validated'}})
+  if self.path=='/api/device/diagnostic':return self.send({'format':'tv-dashboard-diagnostics-v1','device':{'manufacturer':'Philips','platformModel':'TEST','appVersion':'0.12.0'},'network':{'transport':'WLAN','internet':'validated'}})
   if self.path=='/api/unifi/state':return self.send({'configured':True,'host':'10.0.0.1','siteId':'fixture-site','ready':True,'checkedAt':int(time.time()*1000),'sites':[{'id':'fixture-site','name':'Zuhause'}],'devices':[{'name':'Wohnzimmer AP','model':'U7 Test','state':'ONLINE'},{'name':'Gateway','model':'Test Gateway','state':'ONLINE'},{'name':'Switch','model':'Test Switch','state':'OFFLINE'}]})
   if self.path=='/api/hue/automation':return self.send(automation)
   if self.path=='/api/hue/state':return self.send(hue)
@@ -35,6 +44,28 @@ class Handler(BaseHTTPRequestHandler):
   self.send({'message':'Not found'},404)
  def do_POST(self):
   data=json.loads(self.rfile.read(int(self.headers.get('Content-Length','0'))) or b'{}')
+  if self.path.startswith('/api/profiles/'):
+   try:
+    action=self.path.split('/')[-1];entry=next((p for p in profile_view()['profiles'] if p['id']==data.get('id')),None)
+    if action=='apply':
+     if not entry:raise ValueError()
+     config=copy.deepcopy(entry['config']);state['display'].update(config.pop('display'));state['appShortcuts'].update(config.pop('appShortcuts'));state.update(config)
+    elif action in ('save','rename'):
+     name=data['name'].strip()
+     if not name or len(name)>40 or any(ord(c)<32 for c in name) or name.casefold() in ('standard','mediathek') or any(p['name'].casefold()==name.casefold() and p['id']!=data.get('id') for p in custom_profiles):raise ValueError()
+     if data.get('id'):
+      if not entry or entry['builtin']:raise ValueError()
+      item=next(p for p in custom_profiles if p['id']==data['id']);item['name']=name
+      if action=='save':item['config']=profile_config()
+     else:
+      if action!='save' or len(custom_profiles)>=8:raise ValueError()
+      custom_profiles.append({'id':'custom-'+str(uuid.uuid4()),'name':name,'builtin':False,'config':profile_config()})
+    elif action=='delete':
+     if not entry or entry['builtin']:raise ValueError()
+     custom_profiles.remove(next(p for p in custom_profiles if p['id']==data['id']))
+    else:raise ValueError()
+    return self.send(profile_view())
+   except (ValueError,KeyError):return self.send({'message':'Bitte Profilname und Auswahl prüfen.'},400)
   if self.path=='/api/app-shortcuts':
    if set(data)!={'ard','zdf'} or any(type(v) is not bool for v in data.values()):return self.send({'message':'Invalid app shortcuts'},400)
    state['appShortcuts']={**data,'ardAvailable':True,'zdfAvailable':True};return self.send(state['appShortcuts'])

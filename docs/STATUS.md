@@ -2,9 +2,17 @@
 
 [Documentation](README.md) · [Testing](TESTING.md) · [Earlier evidence](VALIDATION-HISTORY.md)
 
-**November 14, 2026 · 0.11.7 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
+**November 14, 2026 · 0.12.0 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
 
-The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.11.7 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.12.0 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+
+## 0.12.0 profiles in local web settings
+
+- Design offers immutable Standard/Mediathek presets and up to eight per-TV custom snapshots. Create/replace captures already-saved presentation settings; rename/delete never apply configuration. Strict normalization precedes one preference commit for apply. Names/models, cameras/providers, light states and standby/screensaver/Android settings are excluded. [Workflow and API](PROFILES.md).
+- The web preserves unrelated name/camera drafts, confirms affected draft replacement and snapshot update/deletion inline, locks conflicting covered-form saves, ignores stale list replies and retains acknowledged state on failure. Correspondence is computed from current settings; later edits do not silently rewrite a saved snapshot. Built-ins are not applied on installation.
+- Both signed builds, 38 production profile configuration/persistence checks with in-memory Android adapters and 125 production web checks passed. Earlier geometry/protocol/provider suites retain their version-specific scope. The synthetic browser verified apply/create/update/rename/custom switch/reload and localization, with no body overflow at 320/390/768/1280 px and no console warnings/errors. A native JS confirm blocked the initial test transport; the final inline path was retested successfully. Public images use synthetic data.
+- Twenty-eight actual primary-TV installation/API/native checks passed: retained-key hash and 0.12.0/code 26, original settings/cameras/pairing, exact pinned-HTTPS asset, immutable built-ins/current snapshot, all five profile routes requiring authentication, save-only behavior, seven rejected invalid/protected requests without configuration changes, rename/update/custom apply/delete and both presets. Native Home showed Mediathek and then the original standard destinations. The exact original configuration was restored and all temporary test profiles removed.
+- No provider/light/HDMI command or app installation/removal was sent. Provider setup and standby activation were re-read after restoration. This does not newly verify actual media playback, camera streaming, lighting behavior or standby delivery. The second TV was not contacted or updated and remains separately verified on 0.11.6. Custom profiles are local; no export/import or cross-TV/automatic GitHub sync is implemented.
 
 ## 0.11.7 primary-TV baseline and optional location settings
 

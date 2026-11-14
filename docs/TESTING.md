@@ -14,6 +14,7 @@ Run `python3 tests/check_gitignore.py` to check Git's actual ignore behavior and
 
 | Suite | Checks | What it establishes |
 | --- | ---: | --- |
+| Production profile configuration/persistence | 38 | Strict presets/config, atomic commits, unrelated-key retention, CRUD and limits with in-memory Android adapters |
 | Production Ambilight controller | 29 | Loopback HTTP: advertised manual styles, palette requests, byte validation and brightness readback |
 | Production palette/conversion classes | 53 | Protocol ranges, golden values, preset matching and Hue conversion |
 | Hue UI with HTTPS fixture | 26 | Remote/touch navigation, coalescing, no extra catalog reads, stale/slow/error replies, stable pixels outside the slider and scoped scenes |
@@ -28,7 +29,7 @@ Run `python3 tests/check_gitignore.py` to check Git's actual ignore behavior and
 | Native appearance | 19 | Complete validation, rendered order, compact camera, actual D-pad traversal, four themes, focus/detail-control retention and no light commands |
 | Hue standby automation | 18 | Actual emulator screen-state broadcasts with loopback Hue, default/disabled behavior, validation, scoped off, no wake-on/retry and stale target suppression |
 | Color-key native events | 12 | Android code mapping, repeat/key-up/cancel suppression, disabled action and custom System/Apps navigation on the isolated emulator |
-| Web state/payload logic | 107 | Independent drafts, names/models, presentation/shortcuts, per-TV integrations, ARD/ZDF visibility/availability/order, disabled requests/navigation and save/error/session handling |
+| Web state/payload logic | 125 | Independent drafts, names/models, presentation/shortcuts, per-TV integrations, ARD/ZDF visibility/availability/order, disabled requests/navigation and save/error/session handling |
 
 For 0.8.0 the palette, web, UniFi adapter/inventory, network and screensaver suites were repeated. The most recent complete Ambilight/general navigation suite runs remain the 0.7.0 component evidence; the 26-check Hue suite was rerun for 0.10.0.
 
@@ -245,3 +246,11 @@ The synthetic browser verified enabled save/reload, an order change, eight previ
 The 107-check web suite now explicitly distinguishes a retained legacy camera-first order from a fresh Ambilight-first baseline. It also verifies that resetting an appearance draft leaves a second location's media/integration/visibility choices intact. Native geometry checks pin the fresh default order, preserve legacy normalization and still cover all 1,290,240 order/visibility/layout combinations.
 
 Both signed builds passed. The primary QM163E / Android 8 TV passed sixteen installation/API/native assertions while updating from 0.11.2 to 0.11.7: hash/version, retained configuration and package set, unchanged pinned HTTPS identity, protected optional routes, exact web asset and standard visible Home. There were no provider or settings writes. Earlier suites and second-TV results retain their version-specific scope; 0.11.7 was not installed on the second TV.
+
+## Profile snapshots (0.12.0)
+
+`python3 tests/check_profiles.py` compiles actual ProfileConfig/DashboardProfiles/HomeAppearance/IntegrationSettings/HomeLayout classes with a checksum-pinned test-only JSON library and in-memory Android preferences/snapshot adapters. The 38 checks establish validation, allowed storage/application keys, a single commit per apply, CRUD, immutable presets and the eight-profile limit; they do not exercise Android lifecycle callbacks. The 125-check web suite includes 18 profile cases, including inline cancellation and preservation of unrelated drafts.
+
+The synthetic browser exercised preset selection, custom creation, saved appearance adjustment/update, rename, custom/standard switching, reload persistence and shared English/German UI. The final inline-confirmation version passed 320/390/768/1280 px without body overflow and recorded no console warnings/errors. A first native JS confirm dialog blocked the browser's input transport; it was replaced by inline confirmation and the final path retested. Screenshots contain synthetic data only; physical-phone behavior remains separate.
+
+The primary TV separately passed 28 installation/API/native profile assertions on 0.12.0: installed hash/runtime, retained setup, authentication and strict rejection, custom CRUD, Standard/Mediathek switching, native destination changes and exact restoration. Temporary test snapshots were removed. No light/provider/input action or second-TV access was part of that pass.
