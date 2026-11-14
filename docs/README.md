@@ -17,7 +17,7 @@
 | [Changelog](../CHANGELOG.md) | Changes by version |
 | [Validation history](VALIDATION-HISTORY.md) | Earlier checks, failed attempts and limitations retained through 0.6.1 |
 
-## Current application: 0.13.0
+## Current application: 0.13.1
 
 The TV provides native Home, cameras, Ambilight, Hue, HDMI selection and System screens. The local web dashboard has eight sections:
 

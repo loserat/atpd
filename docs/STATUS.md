@@ -2,9 +2,15 @@
 
 [Documentation](README.md) · [Testing](TESTING.md) · [Earlier evidence](VALIDATION-HISTORY.md)
 
-**November 14, 2026 · 0.13.0 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
+**November 14, 2026 · 0.13.1 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
 
-The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.0 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.1 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+
+## 0.13.1 repository and installed-version footer
+
+- Every authenticated web settings section ends with a compact GitHub repository link and the installed version from the existing TV state response. The link opens separately without an opener/referrer; no GitHub request occurs merely by loading settings.
+- Both signed builds and all 156 web state/payload checks passed. The synthetic browser verified the link/version and no body overflow at 320/390/1280 px, plus presence after changing sections. A reviewed local footer image uses synthetic data; the public screenshot allowlist is unchanged.
+- Six primary-TV installation/API checks passed: runtime 0.13.1/code 29, installed retained-key hash, unchanged full settings/cameras, identical profiles, preserved model/saver/activation/Home/package set and the new footer served over pinned HTTPS. No settings/profile/provider write or second-TV update was performed.
 
 ## 0.13.0 installed favorites and explicit profile identity
 

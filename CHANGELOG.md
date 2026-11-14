@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.1 — 2026-11-14
+
+- Add a compact footer across the authenticated local web settings, linking to the public GitHub repository and showing the installed version returned by the TV. The link opens separately without sending the dashboard address as a referrer.
+- Both signed builds, 156 web checks and 320/390/1280 px browser checks passed. Installed on the primary TV with six API/install retention checks; saved setup/profiles remain unchanged and the second TV was not updated.
+
 ## 0.13.0 — 2026-11-14
 
 - Replace fixed ARD/ZDF switches with up to four installed TV-app favorites directly below Mediathek in web Design → Profile. Standard retains the hidden choice; Mediathek enables it. Refresh preserves drafts; missing selected apps remain removable. No app installation, sign-in or arbitrary launch intents.

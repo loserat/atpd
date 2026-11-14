@@ -148,3 +148,7 @@ A compact band above navigation identifies the TV address, current matching save
 ## Explicit profile identity and app selection (0.13.0)
 
 The confirmed band separates the chosen name from **Typ: Standard/Mediathek** and an **Angepasst** marker. A custom profile keeps its name even when it matches a built-in; later edits do not rename it. The editor type categorizes the saved snapshot; it does not apply another template. The selected editor entry is independent of the applied TV profile. App checkboxes sit directly below the preset cards, with count, Save and Refresh. Desktop uses two columns; mobile stacks the rows and full-width actions. Reviewed synthetic images: [Desktop](images/web-profiles.png) · [Phone](images/web-profiles-mobile.png).
+
+## Repository and version footer (0.13.1)
+
+Every authenticated settings section ends with a compact GitHub link and the installed version from the TV state response, matching the header. The footer wraps at narrow widths. Opening the repository uses a separate tab with no opener or referrer; merely reading settings makes no GitHub request.

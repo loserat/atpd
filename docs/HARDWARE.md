@@ -11,8 +11,8 @@ This summarizes the last verified installations; it is not a new live reading or
 | Area | First TV | Second TV |
 | --- | --- | --- |
 | Platform | QM163E, Android 8 / API 26 | TPM191E, Android 12 / API 31 |
-| Last verified installed dashboard | 0.13.0 / version code 28 | 0.11.6 / version code 24 |
-| Update scope | Unchanged during the second-TV work; subsequently updated through 0.13.0 as the primary reference | Installed and checked in place with its retained signing identity |
+| Last verified installed dashboard | 0.13.1 / version code 29 | 0.11.6 / version code 24 |
+| Update scope | Unchanged during the second-TV work; subsequently updated through 0.13.1 as the primary reference | Installed and checked in place with its retained signing identity |
 | Home button | Earlier results retain their recorded scope | Physical remote confirmed; dashboard is Home, stock Google launcher disabled only for user 0 and retained for recovery |
 | Ambilight | Earlier fixed-color/device checks below | Manual colors and brightness technically checked and confirmed by the owner |
 | Optional integrations | Saved per-TV feature choices retained by 0.13.0 | Hue and UniFi disabled; cameras remain hidden |
@@ -22,7 +22,7 @@ The second TV's last observed Home has **Ambilight, ARD Mediathek and ZDF Mediat
 
 The work covered installation/debugging access, Android-12 HTTPS repair, owner-approved Home assignment, the manual Ambilight adapter, per-TV integration switches and Mediathek shortcuts. Detailed test results and limitations follow below and in [Current status](STATUS.md). Setup and the recorded Home recovery commands are in [Installation](INSTALLATION.md#home-assignment).
 
-The current repository and primary TV are **0.13.0**. Its baseline appearance matches the primary TV; the second TV remains on its separately verified **0.11.6** with its own optional configuration. Publishing source alone does not update another TV. Recheck the selected target and its retained settings before further device work. Standby/reboot persistence, actual Mediathek playback and the other outstanding checks remain open.
+The current repository and primary TV are **0.13.1**. Its baseline appearance matches the primary TV; the second TV remains on its separately verified **0.11.6** with its own optional configuration. Publishing source alone does not update another TV. Recheck the selected target and its retained settings before further device work. Standby/reboot persistence, actual Mediathek playback and the other outstanding checks remain open.
 
 GitHub preserves the public source, guides, test helpers and reviewed synthetic images. Device settings, signing keys, provider credentials and raw evidence stay private; the repository is not a portable backup of either TV's app data.
 
