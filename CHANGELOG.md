@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.3 — 2026-11-14
+
+- Add a clear WLAN icon beside the Home connection name, an Ethernet plug for LAN and a neutral network symbol for other/unknown transports. The symbol itself carries the existing green/amber/grey status, followed by the name; remove the separate dot. Fit long names within the same compact focus target; no signal-strength claim, permission or network probe is added.
+- Both signed builds, 156 web checks and six primary-TV installation/retention checks passed. Native status-colored WLAN icon pixels and unchanged badge bounds/selection were checked on the active WLAN connection; LAN/other rendering remains separate physical coverage.
+
 ## 0.13.2 — 2026-11-14
 
 - Center the native Home color-key legend as one group using the actual visible labels and selected text font. Hidden/inactive keys leave no empty slots; shorter, translated or custom assignments remain centered. Key mappings and behavior are unchanged.

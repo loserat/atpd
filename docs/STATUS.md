@@ -2,9 +2,15 @@
 
 [Documentation](README.md) · [Testing](TESTING.md) · [Earlier evidence](VALIDATION-HISTORY.md)
 
-**November 14, 2026 · 0.13.2 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
+**November 14, 2026 · 0.13.3 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
 
-The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.2 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.3 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+
+## 0.13.3 recognizable Home connection icon
+
+- Home adds a bright WLAN arc icon beside the name, an Ethernet plug for LAN and a neutral symbol for other/unknown transports. The symbol itself carries the existing internet-status color, followed by the name; the separate dot is removed and the compact focus target remains. No signal-strength measurement, permission, network setting change or probe is added.
+- Both signed builds and the existing 156 web checks passed. Six primary-TV install/API checks verified 0.13.3/code 31, installed hash, unchanged settings/profiles/model/saver/activation/Home/packages and retained web footer.
+- The primary TV actually reported validated WLAN. Native screenshot checks and visual review confirmed the green WLAN glyph before the name without a separate dot inside the unchanged 440 × 64 badge; its selectable accessibility target remained present. LAN/other icons are implemented and compiled, but were not verified with a changed physical connection. No provider action or second-TV update was performed.
 
 ## 0.13.2 centered native color-key legend
 
@@ -100,7 +106,7 @@ Both READMEs and the hardware, setup, architecture, UI, testing and roadmap docu
 
 ## Implemented and installed
 
-- Compact Home connection dot/name, reading the actual active SSID where Android permits it; no location permission or custom internet probe.
+- Compact Home status-colored connection symbol/name, reading the actual active SSID where Android permits it; no location permission or custom internet probe.
 - Editable persisted Home heading and web dashboard name, with separate labels, bounded input, defaults and native text ellipsis.
 - Eight web sections including TV information/maintenance, redacted diagnostic export, explicit dashboard-open request and screensaver styling controls.
 - Optional local UniFi Network inventory with explicit site choice, encrypted key/pinned certificate, upstream GET-only calls, bounded pagination and stale/unknown states.

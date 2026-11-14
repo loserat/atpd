@@ -6,7 +6,7 @@ Eine schlanke Startoberfläche für Philips Android TV: Kameras, Ambilight, Phil
 
 Als Android-App installieren und bei Bedarf als Home-Oberfläche zuordnen.
 
-**0.13.2 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
+**0.13.3 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
 
 ## So sieht es aus
 
@@ -77,7 +77,7 @@ Geprüfte Web-Vorschau mit Testdaten. Unter **Design → Profile → Apps für M
 - Eigener Web-Bereich TV-Info/Wartung mit Android-/App-/Hardwaredaten, Laufzeit, Speicher, Schoneroptionen, Diagnosebericht ohne Zugangsdaten und gezieltem Dashboard-Aufruf.
 - Optionale lokale UniFi-Network-Geräteliste für eingebundene Access Points, Switches und Gateway. Mit bewusster Standortwahl, mehreren Geräteseiten und klar markierten veralteten/unbekannten Zuständen. Die Prüfung am echten Controller steht noch aus. [Einrichtung (Englisch)](docs/NETWORK.md#local-unifi-network-inventory).
 - Responsive lokale HTTPS-Einstellungen für Startseite, Kameras, Hue-Kopplung/Raum, HDMI-Übersicht, Netzwerkstatus und TV-Informationen, mit PIN-Anmeldung und geschützten Sitzungen. Kamera-/Hue-Konfiguration bleibt verschlüsselt auf dem TV.
-- Kompakte Netzwerkanzeige auf der Startseite mit kleinem Statuspunkt und aktivem WLAN-Namen, sofern Android ihn freigibt. Grün bedeutet von Android bestätigten Internetzugang, Gelb unbestätigten Zustand und Grau getrennt/unbekannt. Passiv und ohne Konto: **Verbindung dieses Fernsehers, keine UniFi-Gesamtprüfung**. [Netzwerkstatus und Grenzen (Englisch)](docs/NETWORK.md).
+- Kompakte Netzwerkanzeige auf der Startseite mit farbigem Verbindungssymbol und aktivem WLAN-Namen, sofern Android ihn freigibt. Grün bedeutet von Android bestätigten Internetzugang, Gelb unbestätigten Zustand und Grau getrennt/unbekannt. Passiv und ohne Konto: **Verbindung dieses Fernsehers, keine UniFi-Gesamtprüfung**. [Netzwerkstatus und Grenzen (Englisch)](docs/NETWORK.md).
 
 Der Hue-Regler bündelt schnelle Eingaben und sendet für eine zusammengefasste Bedienung einen Schreibbefehl. Danach werden nicht mehr jedes Mal sämtliche Räume, Lampen und Szenen abgefragt. Angezeigt wird der bestätigte Zielwert; bei Fehlern bleibt die zuletzt bestätigte Ansicht erhalten und eine Meldung erscheint direkt auf der Seite.
 
@@ -107,7 +107,7 @@ Voraussetzungen: Python 3, `curl`, JDK 21, Android-SDK-Plattform `android-34`, B
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.13.2.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.13.3.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 

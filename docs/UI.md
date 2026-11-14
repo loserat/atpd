@@ -63,7 +63,7 @@ The app's clock/color styles and preview do not silently enable an automatic scr
 
 ## Network and local web settings
 
-The Home footer contains a small focusable status dot/name without an idle card or arrow; Down from the lower shortcut row reaches it and OK opens the native network detail page. Refresh keeps focus. Android capability callbacks update only the visible status card/button. Network settings open only after the user selects that explicit action. No UniFi site-wide assertion or signal-strength estimate is shown.
+The Home footer contains a small focusable status-colored connection symbol/name without an idle card or arrow; Down from the lower shortcut row reaches it and OK opens the native network detail page. Refresh keeps focus. Android capability callbacks update only the visible status card/button. Network settings open only after the user selects that explicit action. No UniFi site-wide assertion or signal-strength estimate is shown.
 
 The local web page carries the same teal/purple background and mint focus accents, with teal cameras, warm Hue and blue device/network areas. Eight responsive sections share consistent spacing, keyboard-accessible tabs (Left/Right/Home/End) and explicit save feedback. At 320/390 px cards stack and action headings wrap. Existing camera streamlinks are not returned into a field; deletion names the source in a confirmation dialog. [Web screenshot](images/web-settings.jpg) · [Mobile network screenshot](images/web-network-mobile.jpg).
 
@@ -156,3 +156,7 @@ Every authenticated settings section ends with a compact GitHub link and the ins
 ## Centered color-key legend (0.13.2)
 
 Home measures the visible labels in the selected text font, includes their color markers and fixed inter-item gaps, and centers the complete group on the 1920-pixel canvas. Disabled keys and hidden-camera/disabled-Hue assignments leave no reserved holes. Language, assignments and visibility keep their existing behavior.
+
+## Home connection icon (0.13.3)
+
+The compact Home badge draws a WLAN arc icon, Ethernet plug or neutral network symbol from Android's reported active transport. The symbol precedes the name and carries the existing green/amber/grey internet-validation color; there is no separate status dot. Text remains right-aligned and long names are fitted beside the symbol. WLAN arcs identify the connection type; they do not represent measured signal strength. No new permission, probe or router request is made.

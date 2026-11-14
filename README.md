@@ -6,7 +6,7 @@ A lightweight dashboard for Philips Android TV: cameras, Ambilight, Philips Hue,
 
 Install as an Android app and optionally assign it as Home.
 
-**0.13.2 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
+**0.13.3 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
 
 ## A look at the interface
 
@@ -77,7 +77,7 @@ Reviewed web preview with synthetic data. Under **Design → Profile → Apps f�
 - A dedicated web TV-info/maintenance section for Android/app/hardware, uptime, storage, screensaver styling, redacted diagnostics and an explicit dashboard-open request.
 - Optional local UniFi Network inventory for adopted Access Points, switches and gateway, with explicit site selection, paginated reads and honest stale/unknown states. Real-controller acceptance is pending. [UniFi setup](docs/NETWORK.md#local-unifi-network-inventory).
 - Responsive local HTTPS settings for Home, cameras, Hue pairing/room selection, HDMI inventory, network status and TV information, with PIN login and protected sessions. Camera/Hue configuration stays encrypted on the TV.
-- A compact Home network shortcut with a small status dot and active WLAN name when Android supplies it. Green means Android validated internet; amber is unconfirmed and grey is disconnected/unknown. Passive and account-free; this is **TV connectivity, not UniFi site health**. [Network status and limitations](docs/NETWORK.md).
+- A compact Home network shortcut with a status-colored connection icon and active WLAN name when Android supplies it. Green means Android validated internet; amber is unconfirmed and grey is disconnected/unknown. Passive and account-free; this is **TV connectivity, not UniFi site health**. [Network status and limitations](docs/NETWORK.md).
 
 The Hue brightness slider batches input and sends one write for a coalesced gesture. It does not fetch the full room/light/scene catalog after each adjustment. Its value represents the acknowledged target; connection errors retain the previous confirmed view and show an inline message.
 
@@ -107,7 +107,7 @@ Requirements: Python 3, `curl`, JDK 21, Android SDK platform `android-34`, Build
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.13.2.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.13.3.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 

@@ -6,7 +6,7 @@ Version 0.8.0 keeps two independent sources: **Android connectivity for this TV*
 
 ## TV connection indicator
 
-Home shows a small focusable dot and the active WLAN name, without the former large card or arrow. Down from the shortcut row reaches it; OK opens details. Green means Android's latest default-network capabilities include internet validation. Amber means a network exists without confirmed validation; grey means disconnected/unknown. Names are ellipsized inside a fixed 440 × 64 virtual target and the focus outline appears only while selected.
+Home shows a small focusable connection symbol followed by the active WLAN name, without the former large card or arrow. Down from the shortcut row reaches it; OK opens details. Green means Android's latest default-network capabilities include internet validation. Amber means a network exists without confirmed validation; grey means disconnected/unknown. Names are ellipsized inside a fixed 440 × 64 virtual target and the focus outline appears only while selected.
 
 `ACCESS_NETWORK_STATE` and `ACCESS_WIFI_STATE` are normal read permissions. No location permission, Wi-Fi scan, saved-network listing or signal-strength guess is added. The Android 8 test Philips supplied its active SSID with those permissions. Other firmware may redact it; the badge falls back to WLAN and the detail page states that the name is not available. The app never invents an SSID. It does not enable location or alter connectivity settings to obtain a name.
 
@@ -48,3 +48,7 @@ The key and local certificate pin are stored in `unifi-network.enc`, encrypted w
 **Validation:** synthetic HTTPS adapter and native UI tests passed. The real-controller key/setup was deferred by the owner, so real UniFi names/states, exact firmware compatibility and offline transitions are not yet verified.
 
 References: [Official UniFi API overview](https://help.ui.com/hc/en-us/articles/30076656117655-Getting-Started-with-the-Official-UniFi-API), [adopted-device schema](https://developer.ui.com/network/v10.6.102/getadopteddeviceoverviewpage), [Android NetworkCapabilities](https://developer.android.com/reference/android/net/NetworkCapabilities), [Android WifiInfo SSID](https://developer.android.com/reference/android/net/wifi/WifiInfo#getSSID()).
+
+## Home transport symbol (0.13.3)
+
+The Home badge identifies WLAN with an arc symbol, LAN with an Ethernet plug and other/unknown transports with a neutral network symbol. The symbol itself means Android-validated internet (green), connected but unconfirmed (amber), or disconnected/unknown (grey); there is no separate status dot. The arcs identify WLAN, not measured signal strength. Names remain fitted within the unchanged compact focus target. Physical verification covers the primary TV's active WLAN connection; no connection type was changed to exercise the alternatives.
