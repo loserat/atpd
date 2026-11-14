@@ -529,5 +529,19 @@
   "Eigenes Profil löschen? Die aktuelle TV-Einrichtung bleibt erhalten.": "Delete this custom profile? The current TV setup is retained.",
   "Zum Anpassen: Profil übernehmen, Einstellungen ändern und speichern. Danach das eigene Profil mit dem aktuellen Stand aktualisieren. TV-Namen, Verbindungen und Lichtzustände bleiben erhalten. Bis zu acht eigene Profile pro TV.": "To customize, apply a profile, edit and save the settings, then update your own profile from the current setup. TV names, connections and light states are retained. Up to eight custom profiles per TV.",
   "Bestätigen": "Confirm",
-  "Abbrechen": "Cancel"
+  "Abbrechen": "Cancel",
+  "Am TV eingestellt": "Configured on this TV",
+  "Am TV eingestellt: ": "Configured on this TV: ",
+  "Zuletzt bestätigt": "Last confirmed",
+  "Zuletzt bestätigt: ": "Last confirmed: ",
+  "Wird geprüft …": "Checking …",
+  "TV wird geprüft": "Checking TV",
+  "Noch nicht bestätigt": "Not confirmed yet",
+  "Vom TV bestätigt · ": "Confirmed by TV · ",
+  "Stand unbestätigt · ": "Unconfirmed state · ",
+  " · Stand unbestätigt": " · Unconfirmed state",
+  "Profilstand wird geprüft …": "Checking profile state …",
+  "TV erreichbar": "TV reachable",
+  "TV nicht aktuell bestätigt": "TV state not confirmed",
+  "Am TV eingestellt ✓": "Configured on this TV ✓"
 }

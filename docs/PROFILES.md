@@ -2,7 +2,7 @@
 
 [Documentation](README.md) · [Installation](INSTALLATION.md) · [Current status](STATUS.md)
 
-Open **Design → Profile** in the local IP dashboard. Profiles are stored on this TV; no account or external service is required. Applying one preset changes the saved dashboard presentation immediately. Existing installations keep their setup when updated; no profile is applied automatically.
+The **Am TV eingestellt** band above every section shows the last TV-confirmed profile, TV address and check time (the browser's receive time). Open **Design → Profile** in the local IP dashboard to select or edit profiles. Profiles are stored on this TV; no account or external service is required. Applying one preset changes the saved dashboard presentation immediately. Existing installations keep their setup when updated; no profile is applied automatically.
 
 ![Profiles in the local settings](images/web-profiles.png)
 
@@ -30,7 +30,7 @@ Up to **eight** custom profiles can coexist. Names have 1–40 characters; empty
 
 A profile captures the **persisted** configuration, not unsaved form drafts. When applying would discard affected layout/visibility/language/shortcut drafts, the dashboard asks for inline confirmation. Unsaved TV-name and camera-stream drafts are retained. Conflicting form saves and duplicate profile actions are blocked during a request; errors retain the last acknowledged UI and release the controls.
 
-The correspondence label is computed from the saved settings. It shows the first matching profile, with built-in presets taking precedence; otherwise it says **Individuell angepasst**. It is not a separate active-profile mode that silently rewrites later edits. Another browser's changes are read when reopening Design or reloading.
+The correspondence label is computed from the saved settings. It shows the first matching profile, with built-in presets taking precedence; otherwise it says **Individuell angepasst**. It is not a separate active-profile mode that silently rewrites later edits. Since 0.12.1, visible authenticated pages read this state every five seconds and on focus/return. Another browser's profile or matching-name change updates the indicator without reloading. Current form drafts and their focus remain separate and are never replaced by a status read.
 
 ## What a profile contains
 
@@ -44,6 +44,14 @@ The correspondence label is computed from the saved settings. It shows the first
 | Four color-key assignments | Screensaver settings/activation and Hue standby automation |
 
 Applying a profile sends no light, HDMI, pairing or provider command. The retained Hue standby option becomes eligible again if Hue is re-enabled and the normal later standby conditions occur; profiles do not change that option or guarantee standby delivery. Already-dispatched operations from elsewhere cannot be recalled.
+
+## Confirmed, stale and local draft state
+
+The global band and preset labels refer to the TV's **saved settings**, not the local preview or proof that Home is foreground. A changed local draft does not become the active profile. Background reads are GET-only and contact no light/controller/camera provider.
+
+Only one read is in flight; each has an eight-second deadline. Reads pause while the page is hidden/signed out or a covered form/profile write is pending. They resume automatically. A failed or over-15-second-old confirmation removes green/active claims and retains the last profile as unconfirmed. Network recovery restores the confirmed state. Late reads cannot overwrite a newer profile application or revive a signed-out session.
+
+Check the displayed TV address when using multiple televisions. A previously loaded page can refer to another device. Older versions did not refresh their connection/profile labels automatically; reload after updating. Separate form values remain independent drafts, even when another client changes the confirmed profile.
 
 ## Storage and API
 

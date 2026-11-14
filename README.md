@@ -6,7 +6,7 @@ A lightweight dashboard for Philips Android TV: cameras, Ambilight, Philips Hue,
 
 Install as an Android app and optionally assign it as Home.
 
-**0.12.0 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
+**0.12.1 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
 
 ## A look at the interface
 
@@ -107,7 +107,7 @@ Requirements: Python 3, `curl`, JDK 21, Android SDK platform `android-34`, Build
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.12.0.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.12.1.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -129,6 +129,8 @@ Replace `DEVICE` with the explicitly selected authorized device. Preserve your s
 | **System → Bildschirmschoner** | Choose a style, date and dim level, or open the full-screen preview. Automatic activation remains a TV/system setting. |
 
 ## Validation and limits
+
+Version 0.12.1 shows the TV-confirmed profile, address and check time above every settings section. Visible pages recheck every five seconds; failed or overdue reads become unconfirmed. Open drafts remain intact. All 146 web checks and the two-client/outage/recovery/responsive browser pass succeeded.
 
 Version 0.12.0 adds local dashboard profiles. Both builds, 38 profile checks and 125 web checks passed. The primary TV passed 28 installation/API/native assertions for profile switching and retention, followed by exact restoration of its original setup. The second TV remains on 0.11.6.
 

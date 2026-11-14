@@ -73,7 +73,7 @@ The unfinished AC Infinity/climate integration remains absent from current publi
 
 Authenticated read-only `GET /api/network/state` returns `source`, `checkedAt`, `connected`, `transport`, `internet`, `address`, and `ssid`. No network configuration write endpoint exists. [Network semantics](NETWORK.md) explain the distinction from UniFi health.
 
-The single local HTML asset has eight accessible tab panels, local CSS/system fonts, scoped pending-form locks and explicit save feedback. Switching sections fetches Hue/HDMI/network data on demand; there is no web polling timer. Camera saves refresh the library while preserving unsaved Home toggles. HDMI inventory is read-only in the browser; actual input selection stays on the TV. Hue setup uses the existing authenticated/pinned adapter; reading the page never pairs or changes room automatically.
+The single local HTML asset has eight accessible tab panels, local CSS/system fonts, scoped pending-form locks and explicit save feedback. Switching sections fetches Hue/HDMI/network data on demand. Since 0.12.1, one visible-session timer reads only local profile metadata; provider polling is not added. Camera saves refresh the library while preserving unsaved Home toggles. HDMI inventory is read-only in the browser; actual input selection stays on the TV. Hue setup uses the existing authenticated/pinned adapter; reading the page never pairs or changes room automatically.
 
 ## Added 0.8.0 components and endpoints
 
@@ -151,3 +151,9 @@ Default reset changes only the local draft and dirty state. During POST, all fou
 `ProfileConfig` validates a complete provider-free six-section payload and generates immutable Standard/Mediathek presets. `DashboardProfiles` stores up to eight custom snapshots in `dashboard_profiles_v1`; create/replace captures saved settings on the server, while rename/delete never apply settings. Apply validates everything before one preference commit and revision increment. Existing preference listeners update Home, language/fonts and disabled integration pages. It never invokes light/provider/input controllers or changes identity/activation keys. Matching is derived from current configuration rather than a sticky mode flag. [Data/API contract](PROFILES.md#storage-and-api).
 
 The web Design card loads profiles on demand. It uses text nodes for custom names, preserves unrelated drafts, gates conflicting covered-form saves and discards stale list replies. Inline confirmation protects draft replacement and snapshot update/deletion. Stored settings are captured separately from open drafts; built-ins remain immutable. There is no import/export or cross-device synchronization.
+
+## Confirmed profile synchronization (0.12.1)
+
+The global read-only band consumes existing authenticated GET `/api/profiles`. A five-second visible-session scheduler, eight-second abort/deadline and fifteen-second confirmation age prevent indefinite positive status. Visibility/logout cancel pending reads; focus/pageshow/online resume them. A generation guard rejects responses superseded by profile writes/logout. Covered form writes defer reads. Apply/CRUD responses can confirm the current snapshot directly.
+
+Polling replaces only the profile data/status, not application `state`, input values or drafts. Unchanged profile-library metadata retains existing editor/list nodes; active-label changes update only text/attributes. Local form saves queue a new authoritative read instead of inferring a profile from mixed client state. Address text comes from the current browser location. No native or provider behavior, preference schema or profile preset changes were made.

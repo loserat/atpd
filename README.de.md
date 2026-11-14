@@ -6,7 +6,7 @@ Eine schlanke Startoberfläche für Philips Android TV: Kameras, Ambilight, Phil
 
 Als Android-App installieren und bei Bedarf als Home-Oberfläche zuordnen.
 
-**0.12.0 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
+**0.12.1 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
 
 ## So sieht es aus
 
@@ -107,7 +107,7 @@ Voraussetzungen: Python 3, `curl`, JDK 21, Android-SDK-Plattform `android-34`, B
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.12.0.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.12.1.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -128,6 +128,8 @@ adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 | **System → Bildschirmschoner** | Stil, Datum und dunkle Darstellung wählen oder die Vollbildvorschau öffnen. Die automatische Aktivierung bleibt eine TV-/Systemeinstellung. |
 
 ## Prüfstand und Grenzen
+
+Version 0.12.1 zeigt den vom TV bestätigten Profilstand mit Adresse und Uhrzeit über allen Menüs. Sichtbare Seiten prüfen ihn automatisch alle fünf Sekunden; Ausfälle werden als unbestätigter Stand angezeigt. Offene Eingaben bleiben erhalten. 146 Web-Prüfungen und die Browserprüfung mit zwei Ansichten, Ausfall/Wiederverbindung und 320–1280 px bestanden.
 
 Version 0.12.0 ergänzt Profile im IP-Dashboard. Beide Builds, 38 Profil- und 125 Web-Prüfungen bestanden. Auf dem Heim-TV bestanden 28 Installations-/API-/GUI-Prüfungen für Profilwechsel und Erhalt der Einrichtung; der ursprüngliche Stand wurde anschließend wiederhergestellt. Der zweite TV bleibt auf 0.11.6.
 

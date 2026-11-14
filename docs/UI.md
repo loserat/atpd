@@ -140,3 +140,7 @@ At the same 390 px synthetic fixture, the first Home form moved from approximate
 ## Profile picker (0.12.0)
 
 Design starts with two one-click preset cards and a custom-profile list/editor. Current correspondence is separate from editable snapshots; custom names render literally. Editing a profile uses the normal section editors, followed by updating its saved snapshot. Inline confirmations remain in the card, and narrow layouts stack the cards/controls without horizontal scrolling. [Scope and full workflow](PROFILES.md). [Desktop](images/web-profiles.png) · [Phone](images/web-profiles-mobile.png).
+
+## Always-visible confirmed profile (0.12.1)
+
+A compact band above navigation identifies the TV address, current matching saved profile and confirmation time. Confirmed presets also say **Am TV eingestellt ✓**. Initial/failed/overdue checks use amber/last-confirmed language rather than an active claim. A profile edited elsewhere appears automatically, while local input/appearance drafts remain intact. The indicator describes saved configuration, not the foreground TV activity. [Synchronization details](PROFILES.md#confirmed-stale-and-local-draft-state).

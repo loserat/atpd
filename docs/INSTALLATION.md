@@ -12,7 +12,7 @@ python3 tests/check_palette.py
 python3 app/build.py
 ```
 
-`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.12.0.apk`; generated dependencies and APKs are ignored by Git.
+`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.12.1.apk`; generated dependencies and APKs are ignored by Git.
 
 ## Signing and retained data
 
@@ -30,7 +30,7 @@ Select the actual device explicitly, especially when an emulator is also running
 
 ```sh
 adb devices
-adb -s DEVICE install -r dist/TV-Dashboard-0.12.0.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.12.1.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -107,3 +107,9 @@ Reload an already-open web page after updating the APK to receive the new Design
 Reload any already-open browser page after updating. On phones/tablets, swipe the sticky section strip sideways to reach all eight sections (Hue is hidden when disabled); expandable guidance retains the setup instructions.
 
 Since 0.11.2, use the separate **Shortcuts** tab to choose each remote colour key. The default reset changes only the preview/draft; save explicitly to apply it. Existing assignments are retained when updating. Reload an existing browser page to receive the eighth tab.
+
+## Current profile indicator (0.12.1)
+
+Reload an already-open IP dashboard after the update. The band above the navigation shows **Am TV eingestellt**, its profile name, this page's TV address and confirmation time. The same preset is marked in Design. A visible authenticated page reads profile settings every five seconds; returning/focusing rechecks immediately. Hidden or signed-out pages stop polling.
+
+If a read fails, exceeds its eight-second deadline or becomes overdue, the last profile is shown as **Zuletzt bestätigt / Stand unbestätigt**, without a positive active-card/connection claim. Recovery is automatic. This reads saved dashboard preferences; it does not prove that Home is currently visible or that a provider is online. Draft fields are independent and are not overwritten by those reads. [Profile behavior](PROFILES.md).

@@ -2,9 +2,18 @@
 
 [Documentation](README.md) · [Testing](TESTING.md) · [Earlier evidence](VALIDATION-HISTORY.md)
 
-**November 14, 2026 · 0.12.0 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
+**November 14, 2026 · 0.12.1 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
 
-The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.12.0 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.12.1 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+
+## 0.12.1 automatically confirmed profile indicator
+
+- A prominent band above all web sections shows the profile matching saved TV settings, this page's TV address and the last confirmation time. Preset cards explicitly mark the confirmed match; locally edited drafts never become an active-profile claim.
+- Existing authenticated GET `/api/profiles` is read every five seconds while visible, and on focus/return. Reads are serialized and bounded by an eight-second abort/deadline. Hidden/signed-out pages stop; pending covered writes defer reads. Expired/failed checks retain the last name as unconfirmed and remove positive status. Explicit pending profile applications are unconfirmed until acknowledged.
+- Status reads never replace local form values or previews; unchanged library metadata retains editor/list nodes and focus. A generation guard rejects stale replies after a newer application or logout. No preference, provider or native UI command is added by synchronization.
+- Both signed builds and 146 web checks passed, including 21 new synchronization regressions. Two synthetic browser clients confirmed actual five-second checks and external profile changes, while an unsaved heading/design survived. Stopping/restarting the fixture confirmed stale state and automatic recovery. Final 320/390/768/1280 px views had no body overflow; expected outage network errors were separate from application exceptions. Reviewed synthetic desktop/phone captures were refreshed.
+
+- Seven primary-TV installation/API assertions passed: final retained-key hash, runtime 0.12.1/code 27, full state/camera retention, identical profile library/current configuration, available provider metadata/saver/activation/Home/package retention, exact pinned-HTTPS HTML/catalog and status lifecycle controls. No profile/settings/provider write was made. The initial foreground equality check observed the Philips NetTV browser instead of MainActivity; a later read found MainActivity again. Foreground continuity is not claimed from that overlapping observation. The second TV was not contacted.
 
 ## 0.12.0 profiles in local web settings
 

@@ -11,20 +11,26 @@ This summarizes the last verified installations; it is not a new live reading or
 | Area | First TV | Second TV |
 | --- | --- | --- |
 | Platform | QM163E, Android 8 / API 26 | TPM191E, Android 12 / API 31 |
-| Last verified installed dashboard | 0.12.0 / version code 26 | 0.11.6 / version code 24 |
-| Update scope | Unchanged during the second-TV work; subsequently updated to 0.11.7 and then 0.12.0 as the primary reference | Installed and checked in place with its retained signing identity |
+| Last verified installed dashboard | 0.12.1 / version code 27 | 0.11.6 / version code 24 |
+| Update scope | Unchanged during the second-TV work; subsequently updated through 0.12.1 as the primary reference | Installed and checked in place with its retained signing identity |
 | Home button | Earlier results retain their recorded scope | Physical remote confirmed; dashboard is Home, stock Google launcher disabled only for user 0 and retained for recovery |
 | Ambilight | Earlier fixed-color/device checks below | Manual colors and brightness technically checked and confirmed by the owner |
-| Optional integrations | Existing setup was not copied or changed | Hue and UniFi disabled; cameras remain hidden |
-| ARD / ZDF shortcuts | Available as optional web settings; both off, no provider app launch tested | Both enabled; existing apps opened to catalogue/start pages |
+| Optional integrations | Saved per-TV feature choices retained by 0.12.1 | Hue and UniFi disabled; cameras remain hidden |
+| ARD / ZDF shortcuts | Optional profile choices retained; provider app launches not retested in 0.12.1 | Both enabled; existing apps opened to catalogue/start pages |
 
 The second TV's last observed Home has **Ambilight, ARD Mediathek and ZDF Mediathek** in the upper row, with **Fernsehen, Geräte and System** below. Its theme, names, fonts and original relative tile order were retained. No additional media app was installed. No sign-in was completed or programme started by the agent.
 
 The work covered installation/debugging access, Android-12 HTTPS repair, owner-approved Home assignment, the manual Ambilight adapter, per-TV integration switches and Mediathek shortcuts. Detailed test results and limitations follow below and in [Current status](STATUS.md). Setup and the recorded Home recovery commands are in [Installation](INSTALLATION.md#home-assignment).
 
-The current repository and primary TV are **0.12.0**. Its baseline appearance matches the primary TV; the second TV remains on its separately verified **0.11.6** with its own optional configuration. Publishing source alone does not update another TV. Recheck the selected target and its retained settings before further device work. Standby/reboot persistence, actual Mediathek playback and the other outstanding checks remain open.
+The current repository and primary TV are **0.12.1**. Its baseline appearance matches the primary TV; the second TV remains on its separately verified **0.11.6** with its own optional configuration. Publishing source alone does not update another TV. Recheck the selected target and its retained settings before further device work. Standby/reboot persistence, actual Mediathek playback and the other outstanding checks remain open.
 
 GitHub preserves the public source, guides, test helpers and reviewed synthetic images. Device settings, signing keys, provider credentials and raw evidence stay private; the repository is not a portable backup of either TV's app data.
+
+## Primary-TV status update (0.12.1)
+
+Seven installation/API assertions passed on QM163E / Android 8: final package hash/runtime, unchanged dashboard/camera data and profile library/current setup, retained available provider metadata/saver/activation/Home/package set, exact pinned-HTTPS settings asset and synchronization controls. No profile or provider setting was written, and no second TV was contacted.
+
+A separate foreground comparison did not pass: it saw the Philips NetTV browser during the read, while before and on a later read the dashboard was foreground. This does not establish uninterrupted foreground activity and is retained separately from the seven passing API/install checks. Browser synchronization behavior was verified using two synthetic clients and a controlled local outage, not by switching the physical TV's profile again.
 
 ## Primary-TV profile verification (0.12.0)
 

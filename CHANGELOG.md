@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.1 — 2026-11-14
+
+- Added a prominent TV-confirmed profile/address/time band above all web settings, with explicit active preset labels. Visible authenticated pages recheck every five seconds and on return/focus.
+- Mark failed, timed-out or overdue confirmations as last known/unconfirmed; pause hidden/signed-out pages, reject late reads and avoid overlapping covered writes. No profile/provider/settings commands are sent by polling.
+- Preserve drafts, focus and unchanged profile editor nodes. Added 21 regressions (146 web checks total), two-client/outage/recovery browser validation and refreshed reviewed desktop/mobile images.
+- Installed on the primary TV: seven installation/API checks confirmed the final asset/version and retained settings/profiles. A transient foreground mismatch is documented separately; no profile/provider command or second-TV update was performed.
+
 ## 0.12.0 — 2026-11-14
 
 - Added per-TV Standard/Mediathek presets and up to eight custom dashboard profiles under web Design. Save from the persisted setup, apply, rename, update or delete with strict validation and inline confirmations.

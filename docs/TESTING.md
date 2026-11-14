@@ -29,7 +29,7 @@ Run `python3 tests/check_gitignore.py` to check Git's actual ignore behavior and
 | Native appearance | 19 | Complete validation, rendered order, compact camera, actual D-pad traversal, four themes, focus/detail-control retention and no light commands |
 | Hue standby automation | 18 | Actual emulator screen-state broadcasts with loopback Hue, default/disabled behavior, validation, scoped off, no wake-on/retry and stale target suppression |
 | Color-key native events | 12 | Android code mapping, repeat/key-up/cancel suppression, disabled action and custom System/Apps navigation on the isolated emulator |
-| Web state/payload logic | 125 | Independent drafts, names/models, presentation/shortcuts, per-TV integrations, ARD/ZDF visibility/availability/order, disabled requests/navigation and save/error/session handling |
+| Web state/payload logic | 146 | Independent drafts, names/models, presentation/shortcuts, per-TV integrations, ARD/ZDF visibility/availability/order, disabled requests/navigation and save/error/session handling |
 
 For 0.8.0 the palette, web, UniFi adapter/inventory, network and screensaver suites were repeated. The most recent complete Ambilight/general navigation suite runs remain the 0.7.0 component evidence; the 26-check Hue suite was rerun for 0.10.0.
 
@@ -254,3 +254,11 @@ Both signed builds passed. The primary QM163E / Android 8 TV passed sixteen inst
 The synthetic browser exercised preset selection, custom creation, saved appearance adjustment/update, rename, custom/standard switching, reload persistence and shared English/German UI. The final inline-confirmation version passed 320/390/768/1280 px without body overflow and recorded no console warnings/errors. A first native JS confirm dialog blocked the browser's input transport; it was replaced by inline confirmation and the final path retested. Screenshots contain synthetic data only; physical-phone behavior remains separate.
 
 The primary TV separately passed 28 installation/API/native profile assertions on 0.12.0: installed hash/runtime, retained setup, authentication and strict rejection, custom CRUD, Standard/Mediathek switching, native destination changes and exact restoration. Temporary test snapshots were removed. No light/provider/input action or second-TV access was part of that pass.
+
+## Automatic profile status (0.12.1)
+
+The 146 web checks include 21 synchronization regressions: global/preset confirmation, address/time, external-client changes, complete draft/node preservation, GET/no-store scope, five-second scheduling, hidden/focus behavior, failure/recovery/expiry, serialization, late reads, deadline/abort and logout/relogin. Timers and visibility are controlled by the test harness; no real TV/provider is contacted.
+
+Two synthetic browser pages verified a genuine five-second timestamp advance and external profile change without reloading the first page; its heading/theme drafts survived. Stopping/restarting only the local fixture produced last-confirmed amber status and automatic recovery with drafts retained. Final viewports 320/390/768/1280 px had no body overflow. Expected network errors during the outage were distinct from application exceptions. Existing profile configuration/native behavior remains unchanged.
+
+The physical primary-TV update separately passed seven hash/runtime, retained-data/profile and exact-asset/API assertions. One additional foreground equality check failed during a transient Philips-browser observation; MainActivity was seen again later, so foreground continuity is not claimed. No real profile/provider action was used to test this status-only change.
