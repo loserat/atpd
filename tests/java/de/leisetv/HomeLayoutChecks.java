@@ -5,7 +5,7 @@ public final class HomeLayoutChecks {
     private static void require(boolean value,String message){if(!value)throw new AssertionError(message);}
     private static void verify(List<String> order){
         for(boolean camera:new boolean[]{true,false})for(boolean hue:new boolean[]{true,false})for(boolean ard:new boolean[]{true,false})for(boolean zdf:new boolean[]{true,false})for(String mode:new String[]{"focus","grid"}){
-            List<HomeLayout.Slot> slots=HomeLayout.positions(order,camera,hue,ard,zdf,mode);List<String> expected=HomeLayout.normalizedOrder(order);if(!camera)expected.remove("cameras");if(!hue)expected.remove("hue");if(!ard)expected.remove("ard");if(!zdf)expected.remove("zdf");
+            List<HomeLayout.Slot> slots=HomeLayout.positions(order,camera,hue,ard,zdf,mode);List<String> expected=HomeLayout.normalizedOrder(order);expected.remove("app3");expected.remove("app4");if(!camera)expected.remove("cameras");if(!hue)expected.remove("hue");if(!ard)expected.remove("ard");if(!zdf)expected.remove("zdf");
             require(slots.size()==expected.size(),"Visible tile count");
             for(int i=0;i<slots.size();i++){
                 HomeLayout.Slot slot=slots.get(i);require(slot.id.equals(expected.get(i)),"Stored order is respected");
@@ -21,7 +21,7 @@ public final class HomeLayoutChecks {
     public static void main(String[] args){
         List<String> defaults=Arrays.asList(HomeLayout.DEFAULT_ORDER);
         require(HomeLayout.validOrder(defaults),"Default order valid");
-        require(defaults.equals(Arrays.asList("ambilight","cameras","hue","tv","inputs","system","ard","zdf")),"Primary-TV standard with optional media positions");
+        require(defaults.equals(Arrays.asList("ambilight","cameras","hue","tv","inputs","system","ard","zdf","app3","app4")),"Primary-TV standard with optional media positions");
         require(!HomeLayout.validOrder(Arrays.asList("cameras","cameras","hue","tv","inputs","system")),"Duplicate rejected");
         require(!HomeLayout.validOrder(Arrays.asList("unknown","ambilight","hue","tv","inputs","system")),"Unknown rejected");
         require(!HomeLayout.validOrder(defaults.subList(0,5)),"Missing destination rejected");
@@ -30,7 +30,11 @@ public final class HomeLayoutChecks {
         List<String> moved=new ArrayList<>(defaults);Collections.swap(moved,moved.indexOf("cameras"),5);require(HomeLayout.positions(moved,true,"focus").get(5).id.equals("cameras")&&HomeLayout.positions(moved,true,"focus").get(5).h==132,"Camera can move to small row");
         boolean invalid=false;try{HomeLayout.positions(defaults,true,"unknown");}catch(IllegalArgumentException e){invalid=true;}require(invalid,"Unknown geometry rejected");
         List<String> legacy=new ArrayList<>(Arrays.asList(HomeLayout.LEGACY_ORDER));Collections.reverse(legacy);require(HomeLayout.validOrder(legacy)&&HomeLayout.normalizedOrder(legacy).subList(0,6).equals(legacy),"Legacy custom order is preserved before appending shortcuts");
-        permutations(new ArrayList<>(defaults),0);require(configurations==1290240,"All eight-item permutations, visibility states and modes tested");
-        System.out.println("Home layout checks passed: 1290240 configurations; bounds, overlap, order and D-pad reachability verified.");
+        permutations(new ArrayList<>(Arrays.asList(HomeLayout.LEGACY_EIGHT_ORDER)),0);require(configurations==1290240,"All eight-item permutations, visibility states and modes tested");
+        int expanded=0;Random random=new Random(130);
+        for(int n=0;n<4096;n++){List<String> order=new ArrayList<>(defaults);if(n>0)Collections.shuffle(order,random);for(boolean camera:new boolean[]{false,true})for(boolean hue:new boolean[]{false,true})for(int count=0;count<=4;count++)for(String mode:new String[]{"focus","grid"}){
+            List<HomeLayout.Slot> slots=HomeLayout.positions(order,camera,hue,count,mode);Set<Integer> reached=new HashSet<>();ArrayDeque<Integer> todo=new ArrayDeque<>();todo.add(0);for(int i=0;i<slots.size();i++){HomeLayout.Slot a=slots.get(i);require(a.x>=96&&a.y>=300&&a.x+a.w<=1824&&a.y+a.h<=856,"Expanded TV-safe bounds");for(int j=i+1;j<slots.size();j++){HomeLayout.Slot b=slots.get(j);require(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y,"Expanded no overlap");}}while(!todo.isEmpty()){int at=todo.remove();if(!reached.add(at))continue;for(int d=0;d<4;d++)todo.add(HomeLayout.neighbor(slots,at,d));}require(reached.size()==slots.size(),"Expanded D-pad reachability");expanded++;
+        }}require(expanded==163840,"Expanded seeded configurations");
+        System.out.println("Home layout checks passed: 1290240 retained eight-slot configurations + 163840 seeded ten-slot configurations; bounds, overlap and D-pad verified.");
     }
 }

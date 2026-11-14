@@ -6,7 +6,7 @@
 
 | Screen | Main actions |
 | --- | --- |
-| Home | Four to eight visible destinations, with featured/compact or equal-size rows; custom Home title and compact network badge |
+| Home | Four to ten visible destinations, with featured/compact or equal-size rows; custom Home title and compact network badge |
 | Cameras | Six cards per page, previous/next page, setup and Back; up to 24 sources |
 | Ambilight | 16 colors, modes, power, light preview and fixed-color brightness |
 | Hue | One explicitly selected room, colors, power, brightness and available room scenes |
@@ -51,7 +51,7 @@ These measures reduce unnecessary drawing and network work. They are not a frame
 
 ## Device behavior
 
-Web **Startseite → Mediathek-Schnellzugriffe** offers independent **ARD Mediathek** and **ZDF Mediathek** switches with installed-app status. Save adds/removes their TV tiles; it does not open, install or authenticate the provider apps. Position both under **Design & Anordnung**, including across rows. Optional tiles default off on other installations. The TV's OK action launches the local app, and Home returns through the configured dashboard assignment. Provider onboarding and playback stay in the provider app.
+Web **Design → Profile → Apps für Mediathek** lists installed TV launchers as checkboxes, with a four-app limit and availability labels. Save keeps choices hidden in Standard; Mediathek enables them. Saving while already enabled updates the visible tiles. Selected missing apps remain removable. Refresh re-reads installation state without discarding the draft. The four favorite slots can move under **Design & Anordnung**. TV OK explicitly launches the selected local app; discovery/save never installs, signs in or starts playback.
 
 Web **Startseite → Funktionen an diesem TV** provides separate **Philips Hue** and **UniFi Network** switches and an explicit Save. Changes remain drafts until saved. Disabling Hue removes its TV tile and web tab, suppresses its shortcut actions/legend and pauses its standby automation. Disabling UniFi removes the native entry/web inventory without hiding the TV's own network status. Connections, tile positions and raw key assignments remain saved; re-enabling does not pair or send provider actions. With both cameras and Hue hidden, Home uses two destinations per row. A disabled saved Hue shortcut is shown as inactive in the editor with a separate explanation.
 
@@ -97,7 +97,7 @@ The panel reports the last recorded attempt as confirmed by the bridge, unconfir
 
 Web **Design → Design & Anordnung** provides four designs: Nordlicht (the original look), Mitternacht (blue), Abendrot (warm brown/rose) and Wald (green). The theme changes shared native backgrounds/card surfaces, preserving light preset colors, text/focus contrast and controls. The web administration itself retains its current style.
 
-Drag any of the eight reserved Home destinations to a new slot, including across rows, or use its **nach vorne/nach hinten** buttons. The arrow buttons retain keyboard focus after moving. Choose **Groß oben · klein unten** or **Alle Kacheln gleich groß**. The header/clock, network badge and color-key legend retain their fixed TV-safe locations. This is a bounded grid editor, not arbitrary pixel coordinates or a custom-app launcher.
+Drag any of the ten reserved Home destinations to a new slot, including across rows, or use its **nach vorne/nach hinten** buttons. The arrow buttons retain keyboard focus after moving. Choose **Groß oben · klein unten** or **Alle Kacheln gleich groß**. The header/clock, network badge and color-key legend retain their fixed TV-safe locations. This is a bounded grid editor, not arbitrary pixel coordinates. Up to four positions represent selected installed TV apps; nine/ten visible cards use five per row.
 
 The preview reflects the current draft, including unsaved Home names/visibility; those fields still use their own Save button. Appearance saves preserve other drafts. **Zurücksetzen** restores the appearance draft to Nordlicht/default order/featured layout; the TV changes only after explicit Save. Pending saves reject conflicting reorder/theme/layout edits.
 
@@ -144,3 +144,7 @@ Design starts with two one-click preset cards and a custom-profile list/editor. 
 ## Always-visible confirmed profile (0.12.1)
 
 A compact band above navigation identifies the TV address, current matching saved profile and confirmation time. Confirmed presets also say **Am TV eingestellt ✓**. Initial/failed/overdue checks use amber/last-confirmed language rather than an active claim. A profile edited elsewhere appears automatically, while local input/appearance drafts remain intact. The indicator describes saved configuration, not the foreground TV activity. [Synchronization details](PROFILES.md#confirmed-stale-and-local-draft-state).
+
+## Explicit profile identity and app selection (0.13.0)
+
+The confirmed band separates the chosen name from **Typ: Standard/Mediathek** and an **Angepasst** marker. A custom profile keeps its name even when it matches a built-in; later edits do not rename it. The editor type categorizes the saved snapshot; it does not apply another template. The selected editor entry is independent of the applied TV profile. App checkboxes sit directly below the preset cards, with count, Save and Refresh. Desktop uses two columns; mobile stacks the rows and full-width actions. Reviewed synthetic images: [Desktop](images/web-profiles.png) · [Phone](images/web-profiles-mobile.png).

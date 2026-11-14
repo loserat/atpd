@@ -162,8 +162,7 @@ public final class MainActivity extends Activity {
             case "tv":return new HomeActionTile(UiText.t("Fernsehen"),UiText.t("TV-Programm"),"tv",()->openTV());
             case "inputs":return new HomeActionTile(UiText.t("Geräte"),UiText.t("HDMI & Zuspieler"),"devices",()->open(new Intent(this,InputsActivity.class)));
             case "system":return new HomeActionTile("System",UiText.t("Einstellungen"),"settings",()->showSystem());
-            case "ard":return new HomeActionTile("ARD Mediathek",UiText.t("Mediathek öffnen"),"apps",()->AppShortcuts.open(this,"ard"));
-            case "zdf":return new HomeActionTile("ZDF Mediathek",UiText.t("Mediathek öffnen"),"apps",()->AppShortcuts.open(this,"zdf"));
+            case "ard":case "zdf":case "app3":case "app4":return new HomeActionTile(AppShortcuts.label(this,id),UiText.t("App öffnen"),"apps",()->AppShortcuts.open(this,id));
             default:throw new IllegalArgumentException("Unknown Home tile");
         }
     }
@@ -174,8 +173,8 @@ public final class MainActivity extends Activity {
         stage(false);homeDirty=false;appsFromSystem=false;
         List<HomeLayout.Slot> slots;
         boolean camera=AdminServer.preferences(this).getBoolean("show_camera",true);
-        try{org.json.JSONObject appearance=HomeAppearance.view(this);slots=HomeLayout.positions(HomeAppearance.order(appearance),camera,IntegrationSettings.hue(this),AppShortcuts.enabled(this,"ard"),AppShortcuts.enabled(this,"zdf"),appearance.getString("layout"));}
-        catch(Exception error){slots=HomeLayout.positions(Arrays.asList(HomeLayout.DEFAULT_ORDER),camera,IntegrationSettings.hue(this),AppShortcuts.enabled(this,"ard"),AppShortcuts.enabled(this,"zdf"),"focus");}
+        try{org.json.JSONObject appearance=HomeAppearance.view(this);slots=HomeLayout.positions(HomeAppearance.order(appearance),camera,IntegrationSettings.hue(this),AppShortcuts.count(this),appearance.getString("layout"));}
+        catch(Exception error){slots=HomeLayout.positions(Arrays.asList(HomeLayout.DEFAULT_ORDER),camera,IntegrationSettings.hue(this),AppShortcuts.count(this),"focus");}
         List<Tile> home=new ArrayList<>();
         for(HomeLayout.Slot slot:slots){Tile tile=homeTile(slot.id,slot.h>180);tile.homeId=slot.id;place(tile,slot.x,slot.y,slot.w,slot.h);home.add(tile);}
         for(int i=0;i<home.size();i++){

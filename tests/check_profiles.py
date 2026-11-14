@@ -26,7 +26,7 @@ java = Path(java_home) / 'bin'
 with tempfile.TemporaryDirectory(prefix='atpd-profiles-') as output:
     sources = [root / p for p in [
         'tests/profiles/android/content/Context.java', 'tests/profiles/android/content/SharedPreferences.java',
-        'app/src/de/leisetv/ProfileConfig.java', 'app/src/de/leisetv/DashboardProfiles.java',
+        'app/src/de/leisetv/AppSelection.java', 'app/src/de/leisetv/ProfileConfig.java', 'app/src/de/leisetv/DashboardProfiles.java',
         'app/src/de/leisetv/HomeLayout.java', 'app/src/de/leisetv/HomeAppearance.java',
         'app/src/de/leisetv/IntegrationSettings.java', 'tests/java/de/leisetv/ProfileChecks.java']]
     subprocess.run([str(java / 'javac'), '-encoding', 'UTF-8', '-classpath', str(dependency), '-d', output, *map(str, sources)], check=True)

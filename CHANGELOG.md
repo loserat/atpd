@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.0 — 2026-11-14
+
+- Replace fixed ARD/ZDF switches with up to four installed TV-app favorites directly below Mediathek in web Design → Profile. Standard retains the hidden choice; Mediathek enables it. Refresh preserves drafts; missing selected apps remain removable. No app installation, sign-in or arbitrary launch intents.
+- Show chosen profile name, explicit Standard/Mediathek type and modified state independently. Preserve custom identity over identical presets; save profile types and app choices while keeping provider setup separate.
+- Retain old app/profile choices and six/eight-slot order, extending to ten positional destinations and at most five cards per row. Ignore unused app-slot positions only when matching profiles.
+- Pass both signed builds, 51 profile checks, 156 web checks, exhaustive retained eight-slot geometry and 163,840 seeded ten-slot cases. Browser-test 320–1280 px and refresh reviewed synthetic profile images.
+- Install on the primary TV and pass 25 installation/API/native assertions, including four app labels, generic Medien launch, Home return, custom profile identity/type/modified state and exact original Standard restoration. Remove temporary snapshots. The second TV remains on 0.11.6; provider playback and new physical-remote acceptance remain separate.
+
 ## 0.12.1 — 2026-11-14
 
 - Added a prominent TV-confirmed profile/address/time band above all web settings, with explicit active preset labels. Visible authenticated pages recheck every five seconds and on return/focus.

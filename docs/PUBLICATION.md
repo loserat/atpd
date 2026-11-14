@@ -47,3 +47,7 @@ The 0.11.6 staged tree passed 73 synthetic ignore-rule cases, with 27 reviewed i
 `.gitignore` controls discovery of untracked files; it does not remove already tracked files and cannot inspect arbitrary passwords or camera URLs in an otherwise allowed document. The private-key-block check is a narrow additional guard, not a complete secret scanner. Example environment files must contain placeholders only.
 
 Inspect staged changes before pushing. If a real credential is found in published history, investigate it separately and rotate the exposed credential; adding an ignore rule alone would not undo that disclosure. This audit did not rewrite history, delete local files or change any TV configuration.
+
+## 0.13.0 publication check
+
+The exact 127-file staged snapshot passed 75 ignore/publication cases, with the same 29 reviewed image exceptions. Gitleaks 8.30.1 with full redaction found no secrets; a separate known-private-device-address check found no matches. All 212 local Markdown link targets resolved. The two refreshed profile images were captured from synthetic local fixture data and visually reviewed. Private builds, signing material and physical-device evidence remain excluded. These checks do not rewrite history or guarantee detection of every private value.

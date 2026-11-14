@@ -14,7 +14,7 @@ Run `python3 tests/check_gitignore.py` to check Git's actual ignore behavior and
 
 | Suite | Checks | What it establishes |
 | --- | ---: | --- |
-| Production profile configuration/persistence | 38 | Strict presets/config, atomic commits, unrelated-key retention, CRUD and limits with in-memory Android adapters |
+| Production profile configuration/persistence | 51 | Strict presets/config, atomic commits, unrelated-key retention, CRUD and limits with in-memory Android adapters |
 | Production Ambilight controller | 29 | Loopback HTTP: advertised manual styles, palette requests, byte validation and brightness readback |
 | Production palette/conversion classes | 53 | Protocol ranges, golden values, preset matching and Hue conversion |
 | Hue UI with HTTPS fixture | 26 | Remote/touch navigation, coalescing, no extra catalog reads, stale/slow/error replies, stable pixels outside the slider and scoped scenes |
@@ -25,11 +25,11 @@ Run `python3 tests/check_gitignore.py` to check Git's actual ignore behavior and
 | UniFi local adapter | 10 | Synthetic pinned HTTPS, explicit site, pagination, encrypted configuration, rejected host/site/key, stale/recovery and redaction |
 | Native UniFi inventory | 10 | Compact indicator, bounds, pagination, unknown/stale/recovery, Back and GET-only upstream calls |
 | Passive network UI | 6 | Home shortcut, Android source/caveat, bounds, initial focus, refresh and Back |
-| Home layout geometry | 1,290,240 configurations | Every eight-item order × 16 camera/Hue/ARD/ZDF visibility states × two geometries: bounds, overlap, order and D-pad reachability |
+| Home layout geometry | 1,290,240 exhaustive + 163,840 seeded | All retained eight-slot configurations, plus 4,096 seeded ten-slot orders × camera/Hue visibility × app count 0–4 × two layouts; bounds, overlap and D-pad reachability |
 | Native appearance | 19 | Complete validation, rendered order, compact camera, actual D-pad traversal, four themes, focus/detail-control retention and no light commands |
 | Hue standby automation | 18 | Actual emulator screen-state broadcasts with loopback Hue, default/disabled behavior, validation, scoped off, no wake-on/retry and stale target suppression |
 | Color-key native events | 12 | Android code mapping, repeat/key-up/cancel suppression, disabled action and custom System/Apps navigation on the isolated emulator |
-| Web state/payload logic | 146 | Independent drafts, names/models, presentation/shortcuts, per-TV integrations, ARD/ZDF visibility/availability/order, disabled requests/navigation and save/error/session handling |
+| Web state/payload logic | 156 | Independent drafts, installed-app selection/limit/availability, explicit profile type/identity/modified status, presentation, integration gates and save/error/session handling |
 
 For 0.8.0 the palette, web, UniFi adapter/inventory, network and screensaver suites were repeated. The most recent complete Ambilight/general navigation suite runs remain the 0.7.0 component evidence; the 26-check Hue suite was rerun for 0.10.0.
 
@@ -262,3 +262,11 @@ The 146 web checks include 21 synchronization regressions: global/preset confirm
 Two synthetic browser pages verified a genuine five-second timestamp advance and external profile change without reloading the first page; its heading/theme drafts survived. Stopping/restarting only the local fixture produced last-confirmed amber status and automatic recovery with drafts retained. Final viewports 320/390/768/1280 px had no body overflow. Expected network errors during the outage were distinct from application exceptions. Existing profile configuration/native behavior remains unchanged.
 
 The physical primary-TV update separately passed seven hash/runtime, retained-data/profile and exact-asset/API assertions. One additional foreground equality check failed during a transient Philips-browser observation; MainActivity was seen again later, so foreground continuity is not claimed. No real profile/provider action was used to test this status-only change.
+
+## Installed favorites and profile types (0.13.0)
+
+Both public and retained-key builds/signatures pass. The 51-check production profile suite covers strict app/type validation, old snapshot inference, selection retention, explicit custom identity and modified-state handling. Its in-memory AppShortcuts snapshot adapter does not exercise Android PackageManager or real launches. The 156 web checks cover bounded checkbox drafts, refresh, pending locks, app-only payloads, profile type/name and prior synchronization regressions. Geometry retains exhaustive eight-slot coverage and adds 163,840 reproducible seeded ten-slot cases; this is not an exhaustive traversal of ten factorial orders.
+
+The real browser fixture saved four apps, applied Mediathek, created/applied/updated Filmabend, preserved that name after editing and cleared the modified marker after updating the snapshot. The final page passed 320/390/768/1280 px widths. An initial 320 px overflow in the 60-track preview was corrected by moving column spacing to tile margins, then retested. Publication screenshots use synthetic entries. Actual TV results and restoration are documented separately in Current status.
+
+The primary-TV pass completed 25 install/API/native assertions: installed hash/runtime, retention/migration, genuine installed catalog and rejected invalid inputs, four saved/visible choices, generic Medien app launch/Home return and custom identity/type/modified/update behavior. Final state/profile data equalled the pre-test post-migration snapshot, including the original Standard selection; all temporary profiles were removed. No provider, light or HDMI action was sent. This is distinct from provider playback and physical-remote user acceptance. The first immediate post-start HTTPS attempt was refused before the service became ready; the later pinned connection and full pass succeeded.

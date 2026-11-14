@@ -2,12 +2,13 @@ package de.leisetv;
 
 import java.util.*;
 
-/** Pure geometry for eight stored Home destinations, with deterministic D-pad neighbors. */
+/** Pure geometry for ten stored Home destinations, with deterministic D-pad neighbors. */
 final class HomeLayout {
     static final String[] LEGACY_ORDER={"cameras","ambilight","hue","tv","inputs","system"};
     // Shared project baseline: the primary TV layout. Saved orders remain authoritative.
-    static final String[] DEFAULT_ORDER={"ambilight","cameras","hue","tv","inputs","system","ard","zdf"};
-    static boolean validOrder(List<String> order){return (order.size()==DEFAULT_ORDER.length&&new HashSet<>(order).equals(new HashSet<>(Arrays.asList(DEFAULT_ORDER))))||(order.size()==LEGACY_ORDER.length&&new HashSet<>(order).equals(new HashSet<>(Arrays.asList(LEGACY_ORDER))));}
+    static final String[] LEGACY_EIGHT_ORDER={"ambilight","cameras","hue","tv","inputs","system","ard","zdf"};
+    static final String[] DEFAULT_ORDER={"ambilight","cameras","hue","tv","inputs","system","ard","zdf","app3","app4"};
+    static boolean validOrder(List<String> order){for(String[] allowed:new String[][]{DEFAULT_ORDER,LEGACY_EIGHT_ORDER,LEGACY_ORDER})if(order.size()==allowed.length&&new HashSet<>(order).equals(new HashSet<>(Arrays.asList(allowed))))return true;return false;}
     static List<String> normalizedOrder(List<String> order){if(!validOrder(order))throw new IllegalArgumentException("Invalid Home order");List<String> result=new ArrayList<>(order);for(String id:DEFAULT_ORDER)if(!result.contains(id))result.add(id);return result;}
     static final class Slot {
         final String id;final int x,y,w,h,row;
@@ -21,8 +22,12 @@ final class HomeLayout {
         return positions(order,camera,hue,false,false,layout);
     }
     static List<Slot> positions(List<String> order,boolean camera,boolean hue,boolean ard,boolean zdf,String layout){
+        List<String> apps=new ArrayList<>();if(ard)apps.add("ard");if(zdf)apps.add("zdf");return positions(order,camera,hue,apps,layout);
+    }
+    static List<Slot> positions(List<String> order,boolean camera,boolean hue,int appCount,String layout){if(appCount<0||appCount>4)throw new IllegalArgumentException("Invalid app count");return positions(order,camera,hue,Arrays.asList("ard","zdf","app3","app4").subList(0,appCount),layout);}
+    private static List<Slot> positions(List<String> order,boolean camera,boolean hue,List<String> apps,String layout){
         if(!validOrder(order)||!("focus".equals(layout)||"grid".equals(layout)))throw new IllegalArgumentException("Invalid Home layout");
-        List<String> visible=normalizedOrder(order);if(!camera)visible.remove("cameras");if(!hue)visible.remove("hue");if(!ard)visible.remove("ard");if(!zdf)visible.remove("zdf");
+        List<String> visible=normalizedOrder(order);if(!camera)visible.remove("cameras");if(!hue)visible.remove("hue");for(String id:Arrays.asList("ard","zdf","app3","app4"))if(!apps.contains(id))visible.remove(id);
         int top=visible.size()>6?(visible.size()+1)/2:visible.size()==4?2:"focus".equals(layout)?visible.size()-3:3;List<Slot> slots=new ArrayList<>();
         for(int i=0;i<visible.size();i++){
             int row=i<top?0:1,count=row==0?top:visible.size()-top,col=row==0?i:i-top;

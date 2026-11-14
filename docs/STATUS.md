@@ -2,9 +2,18 @@
 
 [Documentation](README.md) · [Testing](TESTING.md) · [Earlier evidence](VALIDATION-HISTORY.md)
 
-**November 14, 2026 · 0.12.1 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
+**November 14, 2026 · 0.13.0 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
 
-The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.12.1 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.0 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+
+## 0.13.0 installed favorites and explicit profile identity
+
+- **Design → Profile → Apps für Mediathek** lists installed TV apps and saves up to four favorites. Standard hides but retains the choices; Mediathek enables them. Refresh preserves the draft. Removed selected apps remain marked unavailable; no install, sign-in or provider playback is added.
+- Profiles store an explicit Standard/Mediathek type. The confirmed band separates chosen name, type and **Angepasst**. An explicitly applied custom profile keeps its identity even when identical to a built-in. The editor's type categorizes the saved setup; it does not apply/reset a template.
+- Six/eight-slot layouts and legacy app/profile snapshots migrate without discarding choices or reordering existing positions. Four positional favorite slots extend Home to ten reserved destinations and at most five per row. Unused app-slot positions do not cause false modified-state matches.
+- Both signed builds, 51 production profile checks, 156 web checks, 1,290,240 retained eight-slot geometry cases and 163,840 seeded ten-slot cases passed. The latter are reproducible samples, not every ten-slot permutation. Browser checks covered four-app save/apply, own-profile selection/update/modified state and 320/390/768/1280 px. An initial narrow preview overflow was corrected and retested. Reviewed synthetic desktop/phone captures were refreshed.
+- **25 physical primary-TV installation/API/native assertions passed** on QM163E / Android 8: retained-key hash and 0.13.0/code 28, retained settings/cameras/names/model/Home/saver/packages, old order migration, local inventory with a retained unavailable ZDF, strict atomic request rejection, hidden four-app save in Standard, Mediathek enablement and four native labels/bounds. TV OK launched the installed generic Medien app; Home returned to the dashboard. Explicit custom identity, later modified state and snapshot update were checked.
+- The original full Standard setup/favorite selection and identity were restored exactly; all temporary profiles were removed. No provider/light/HDMI command, app installation/removal or second-TV contact was part of that test. The second TV remains separately verified on 0.11.6. Actual provider playback, physical-remote user acceptance of this new picker and cross-TV portability are separate work. The first immediate HTTPS read ran before the service was ready and was refused; the later pinned handshake and full pass succeeded.
 
 ## 0.12.1 automatically confirmed profile indicator
 

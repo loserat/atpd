@@ -6,7 +6,7 @@ Eine schlanke Startoberfläche für Philips Android TV: Kameras, Ambilight, Phil
 
 Als Android-App installieren und bei Bedarf als Home-Oberfläche zuordnen.
 
-**0.12.1 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
+**0.13.0 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
 
 ## So sieht es aus
 
@@ -43,11 +43,11 @@ Native Emulator-Screenshots mit Testdaten und eigener Reihenfolge. Die Kamera-Ka
 </details>
 
 <details>
-<summary>Optionale ARD-/ZDF-Schnellzugriffe</summary>
+<summary>Installierte TV-Apps selbst auswählen</summary>
 
-![ARD- und ZDF-Schalter in den lokalen Einstellungen](docs/images/web-media-shortcuts.png)
+![App-Auswahl und eindeutiger Profiltyp](docs/images/web-profiles.png)
 
-Geprüfte Web-Vorschau mit Testdaten. Unter **Startseite** vorhandene Mediathek-Apps aktivieren und unter **Design** anordnen. Hue und UniFi lassen sich für jeden TV separat ausblenden. Die App-Erkennung bestätigt keine Anmeldung oder Wiedergabe.
+Geprüfte Web-Vorschau mit Testdaten. Unter **Design → Profile → Apps für Mediathek** bis zu vier installierte TV-Apps auswählen und speichern. **Mediathek** zeigt sie an; **Standard** behält die Auswahl ausgeblendet gespeichert. Die Kacheln bleiben unter Design verschiebbar. Die Erkennung bestätigt keine Anmeldung oder Wiedergabe.
 
 </details>
 
@@ -68,7 +68,7 @@ Geprüfte Web-Vorschau mit Testdaten. Unter **Startseite** vorhandene Mediathek-
 - Aufgeräumte Startseite mit großen Fokusflächen, TV-Zugriff, Geräten und System.
 - Bis zu 24 eingerichtete Kameras, sechs pro Übersichtsseite und jeweils ein Stream im Vollbild. Die Übersichtsseite bleibt bei der Rückkehr aus Einstellungen erhalten.
 - Hue und UniFi pro TV im IP-Dashboard ausschalten; deaktivierte Anbindungen werden ausgeblendet, Verbindungen und Belegungen bleiben gespeichert.
-- Optionale ARD-/ZDF-Kacheln öffnen die installierten TV-Apps. Unter **Startseite → Mediathek-Schnellzugriffe** aktivieren und unter Design anordnen.
+- Bis zu vier installierte TV-Apps unter **Design → Profile → Apps für Mediathek** auswählen. Mediathek zeigt die gespeicherten Favoriten als verschiebbare Kacheln; Standard blendet sie aus und behält die Auswahl. Apps werden weder installiert noch angemeldet.
 - Ambilight-Modi, 16 benannte Farben, Lichtvorschau und Helligkeit per Fernbedienung oder Berührung.
 - Lokale Hue-Bridge-Kopplung mit bewusster Raumauswahl, Schalten, unterstützten Farben, Helligkeit und Szenen dieses Raums. Home Assistant ist nicht nötig.
 - HDMI-Erkennung über Androids TV-Eingangsdienst. Vorhandene CEC-Namen kennzeichnen Geräte; die Auswahl übergibt den Eingang an die TV-App des Fernsehers.
@@ -83,7 +83,7 @@ Der Hue-Regler bündelt schnelle Eingaben und sendet für eine zusammengefasste 
 
 Die Darstellung des Heim-TVs ist der **gemeinsame Projektstandard**: Nordlicht, Ambilight zuerst, Kameras/Hue sichtbar und ARD/ZDF aus. Andere Standorte verwenden dieselbe App mit eigenen IP-Einstellungen. Updates behalten diese Auswahl bei. [Standard und Einrichtung wie am zweiten TV (Englisch)](docs/INSTALLATION.md#shared-project-baseline-and-per-tv-settings).
 
-Unter **Design → Profile** stehen jetzt **Standard**, **Mediathek** und bis zu acht eigene Profile bereit. Gespeicherte Einstellungen übernehmen, benennen und aktualisieren; Zugänge und TV-Namen bleiben separat. [Profil-Anleitung (Englisch)](docs/PROFILES.md).
+Unter **Design → Profile** stehen jetzt **Standard**, **Mediathek** und bis zu acht eigene Profile bereit. Gespeicherte Einstellungen übernehmen, benennen, aktualisieren und einem Typ Standard/Mediathek zuordnen. Oben stehen der gewählte Name, der bestätigte Typ und bei späteren Änderungen **Angepasst**. Zugänge und TV-Namen bleiben separat. [Profil-Anleitung (Englisch)](docs/PROFILES.md).
 
 ![Profile mit Standard, Mediathek und eigenem Profil](docs/images/web-profiles.png)
 
@@ -107,7 +107,7 @@ Voraussetzungen: Python 3, `curl`, JDK 21, Android-SDK-Plattform `android-34`, B
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.12.1.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.13.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -122,12 +122,15 @@ adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 | **Hue → Raum & Bridge** | Bridge-Adresse eingeben, Knopf auf der Bridge drücken, verbinden und den TV-Raum bestätigen. Es wird keine Gruppe für das gesamte Zuhause automatisch gewählt. |
 | Netzwerk-Schaltfläche auf der Startseite / Web → **Netzwerk** | TV-Verbindung und Androids Internetbestätigung lesen; kein UniFi-Konto nötig. |
 | Web → **Startseite** | Eigene TV-Überschrift und Namen im IP-Dashboard speichern; ein leerer Name stellt den Standard wieder her. |
+| Web → **Design → Profile** | Profil und Typ wählen, bis zu vier installierte TV-Apps auswählen und speichern. |
 | Web → **TV-Info** | Gerätedaten, Bildschirmschoner, Diagnosebericht und gezielter Dashboard-Aufruf. |
 | Web → **Netzwerk → UniFi Network** | Lokalen Network-API-Schlüssel eintragen, Verbindung prüfen und den Standort bewusst auswählen. Protect-Zugangsdaten werden nicht übernommen. |
 | **Geräte** | Geräte-/HDMI-Karte auswählen. Das Öffnen der Seite liest nur die Eingänge und schaltet noch nicht um. |
 | **System → Bildschirmschoner** | Stil, Datum und dunkle Darstellung wählen oder die Vollbildvorschau öffnen. Die automatische Aktivierung bleibt eine TV-/Systemeinstellung. |
 
 ## Prüfstand und Grenzen
+
+Version 0.13.0 bietet bis zu vier auswählbare installierte TV-Apps und trennt gewählten Profilnamen, Typ und „Angepasst“. Beide signierten Builds, 51 Profil- und 156 Web-Prüfungen sowie die bisherigen vollständigen Achter-Layouts und 163.840 zusätzliche Zehner-Testfälle bestanden. Die Browseransicht passt bei 320–1280 px. Alle 25 Prüfungen am Heim-TV bestanden, einschließlich App-Aufruf, Home-Rückkehr und vollständiger Wiederherstellung des ursprünglichen Standardstands. Der zweite TV bleibt auf 0.11.6. [Prüfumfang (Englisch)](docs/STATUS.md).
 
 Version 0.12.1 zeigt den vom TV bestätigten Profilstand mit Adresse und Uhrzeit über allen Menüs. Sichtbare Seiten prüfen ihn automatisch alle fünf Sekunden; Ausfälle werden als unbestätigter Stand angezeigt. Offene Eingaben bleiben erhalten. 146 Web-Prüfungen und die Browserprüfung mit zwei Ansichten, Ausfall/Wiederverbindung und 320–1280 px bestanden.
 

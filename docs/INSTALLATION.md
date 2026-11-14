@@ -12,7 +12,7 @@ python3 tests/check_palette.py
 python3 app/build.py
 ```
 
-`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.12.1.apk`; generated dependencies and APKs are ignored by Git.
+`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.13.0.apk`; generated dependencies and APKs are ignored by Git.
 
 ## Signing and retained data
 
@@ -30,7 +30,7 @@ Select the actual device explicitly, especially when an emulator is also running
 
 ```sh
 adb devices
-adb -s DEVICE install -r dist/TV-Dashboard-0.12.1.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.13.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -69,10 +69,10 @@ All TVs use the same application source. Since 0.11.7 the reference setup is the
 | Visible destination order | Ambilight, Cameras, Hue, Television, Devices, System | Design → Design & Anordnung |
 | Camera, clock and date visibility | On | Startseite |
 | Hue / UniFi functionality | On; connections must be configured separately | Startseite → Funktionen an diesem TV |
-| ARD / ZDF app tiles | Off; two reserved positions follow System | Startseite → Mediathek-Schnellzugriffe |
+| App favorites | Hidden; ARD/ZDF retained as initial choices, up to four selected apps | Design → Profile → Apps für Mediathek |
 | Language / clock and text fonts | German / default system fonts | Design → Sprache & Schrift |
 
-For the second-TV arrangement, hide cameras, disable Hue/UniFi, enable the installed ARD/ZDF apps, then move those tiles after Ambilight in Design. Save each form. This yields Ambilight / ARD / ZDF above Television / Devices / System; names and theme remain your choice. Since 0.12.0, **Design → Profile → Mediathek** applies this arrangement in one step. **Standard** restores the shared presentation; neither preset pairs a provider. [Custom profiles and scope](PROFILES.md).
+For the second-TV arrangement, choose the installed apps under **Design → Profile → Apps für Mediathek**, save, then apply **Mediathek**. It hides cameras, Hue and UniFi and places the chosen apps after Ambilight. **Standard** restores the shared presentation and hides favorites without discarding their selection. Names remain independent; both presets reset their documented appearance/language/key defaults without pairing providers. [Custom profiles and scope](PROFILES.md).
 
 An update retains existing per-TV settings, including old tile orders and a second TV's disabled integrations or enabled media tiles. Only missing preferences use the baseline. **Design → Reset** changes the appearance draft only; it does not reset integration flags, app visibility or provider connections. Existing camera-first orders are preserved until explicitly rearranged or reset and saved.
 
@@ -86,7 +86,7 @@ Open **System → Web-Einstellungen** on the TV. The page shows its HTTPS addres
 
 Under **Startseite → Funktionen an diesem TV**, disable Hue and/or UniFi when absent at that location, then choose **Funktionen speichern**. Existing installations default to enabled. This changes the dashboard's per-device presentation and provider eligibility, not the lights/router themselves; retained connections and shortcuts return when enabled again. Passive TV connectivity and Ambilight remain independent.
 
-Under **Startseite → Mediathek-Schnellzugriffe**, enable ARD and/or ZDF, then Save. These open an already-installed TV app; no account, app installation or playback is performed by the dashboard. App availability is shown next to each switch. Rearrange the optional tiles under **Design & Anordnung**. Old six-item saved orders retain their relative order and gain two optional reserved positions.
+Under **Design → Profile → Apps für Mediathek**, select up to four installed TV apps and **App-Auswahl speichern**. With Standard active, choices stay hidden until Mediathek is applied. With Mediathek active, saving updates the visible tiles immediately. Use **App-Liste aktualisieren** after installing/removing an app. A retained missing app is labelled unavailable and can be deselected; it is never installed automatically. Rearrange positional favorites under **Design & Anordnung**. Old six/eight-item orders retain their relative order and gain the remaining reserved positions, for ten in total. [Profiles and types](PROFILES.md).
 
 Add camera RTSPS links in the web page. Existing links are retained when their fields are left empty. Removing a dashboard camera does not delete the Protect camera or its recordings.
 
@@ -108,8 +108,8 @@ Reload any already-open browser page after updating. On phones/tablets, swipe th
 
 Since 0.11.2, use the separate **Shortcuts** tab to choose each remote colour key. The default reset changes only the preview/draft; save explicitly to apply it. Existing assignments are retained when updating. Reload an existing browser page to receive the eighth tab.
 
-## Current profile indicator (0.12.1)
+## Current profile indicator (0.13.0)
 
-Reload an already-open IP dashboard after the update. The band above the navigation shows **Am TV eingestellt**, its profile name, this page's TV address and confirmation time. The same preset is marked in Design. A visible authenticated page reads profile settings every five seconds; returning/focusing rechecks immediately. Hidden or signed-out pages stop polling.
+Reload an already-open IP dashboard after the update. The band above the navigation shows **Am TV eingestellt**, its selected profile name, **Typ: Standard/Mediathek**, this page's TV address and confirmation time. Later differences retain the chosen name and add **Angepasst**. Choosing another entry in the saved-profile editor alone does not apply it; use its **Übernehmen** action. The same preset is marked in Design. A visible authenticated page reads profile settings every five seconds; returning/focusing rechecks immediately. Hidden or signed-out pages stop polling.
 
 If a read fails, exceeds its eight-second deadline or becomes overdue, the last profile is shown as **Zuletzt bestätigt / Stand unbestätigt**, without a positive active-card/connection claim. Recovery is automatic. This reads saved dashboard preferences; it does not prove that Home is currently visible or that a provider is online. Draft fields are independent and are not overwritten by those reads. [Profile behavior](PROFILES.md).

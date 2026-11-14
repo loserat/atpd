@@ -17,14 +17,14 @@
 | [Changelog](../CHANGELOG.md) | Changes by version |
 | [Validation history](VALIDATION-HISTORY.md) | Earlier checks, failed attempts and limitations retained through 0.6.1 |
 
-## Current application: 0.12.1
+## Current application: 0.13.0
 
 The TV provides native Home, cameras, Ambilight, Hue, HDMI selection and System screens. The local web dashboard has eight sections:
 
 | Web section | Settings and information |
 | --- | --- |
-| Startseite | TV heading/name, camera/clock/date visibility, ARD/ZDF app shortcuts and per-TV Hue/UniFi switches |
-| Design | TV-confirmed profile status, profiles, themes, tile order/layout, shared language and separate clock/text fonts |
+| Startseite | TV heading/name, camera/clock/date visibility and per-TV Hue/UniFi switches |
+| Design | Confirmed profile name/type, custom profiles, up to four installed app favorites, themes, tile order/layout, shared language and clock/text fonts |
 | Shortcuts | Four colour-key assignments, draft preview and draft-only default reset |
 | Kameras | Camera names, protected stream setup and default camera |
 | Hue | Bridge pairing, selected room and optional standby-off setting |
@@ -38,9 +38,9 @@ The [shared baseline and per-TV setup](INSTALLATION.md#shared-project-baseline-a
 
 ## Reading the evidence
 
-Implemented behavior, local fixture/browser testing and physical verification are separate claims. Version 0.12.1 adds a read-only, automatically confirmed profile band; 146 web checks and the two-client/outage/recovery browser pass succeeded. Existing native/provider behavior is unchanged. Version 0.12.0 passed both signed builds, 38 profile configuration/persistence checks, 125 web checks and 28 primary-TV profile/retention assertions. The original setup was restored afterwards. Version 0.11.7 passed 107 web checks, 1,290,240 geometry configurations, both signed builds and sixteen primary-TV installation/API/native checks. The second TV remains separately verified through 0.11.6. Version 0.11.6 passed 104 web checks, 1,290,240 geometry configurations and 20 second-TV API/native assertions for app shortcuts. The 0.11.5 integration switches separately passed 23 final second-TV assertions. The earlier 0.11.4 pass covered 29 Ambilight protocol checks, 53 palette checks, 24 GUI and six installation/API assertions. Version 0.11.3 separately fixed Android-12 HTTPS. Earlier native/provider/browser results retain their release-specific scope. [Current status](STATUS.md) lists remaining acceptance work. A documentation-only change does not rerun those checks or update a TV.
+Implemented behavior, local fixture/browser testing and physical verification are separate claims. Version 0.13.0 adds installed-app favorites and explicit profile identity/type, with 51 profile checks, 156 web checks, exhaustive retained eight-slot geometry and 163,840 seeded ten-slot configurations. The browser passed the app/profile flow and 320–1280 px widths. Device results are recorded in Current status. Version 0.12.1 added a read-only, automatically confirmed profile band; 146 web checks and the two-client/outage/recovery browser pass succeeded. Existing native/provider behavior is unchanged. Version 0.12.0 passed both signed builds, 38 profile configuration/persistence checks, 125 web checks and 28 primary-TV profile/retention assertions. The original setup was restored afterwards. Version 0.11.7 passed 107 web checks, 1,290,240 geometry configurations, both signed builds and sixteen primary-TV installation/API/native checks. The second TV remains separately verified through 0.11.6. Version 0.11.6 passed 104 web checks, 1,290,240 geometry configurations and 20 second-TV API/native assertions for app shortcuts. The 0.11.5 integration switches separately passed 23 final second-TV assertions. The earlier 0.11.4 pass covered 29 Ambilight protocol checks, 53 palette checks, 24 GUI and six installation/API assertions. Version 0.11.3 separately fixed Android-12 HTTPS. Earlier native/provider/browser results retain their release-specific scope. [Current status](STATUS.md) lists remaining acceptance work. A documentation-only change does not rerun those checks or update a TV.
 
-The [roadmap](ROADMAP.md) records eleven discussed extensions, including general direct favourites, lighting presets and combined actions. The bounded ARD/ZDF app tiles and per-TV integration switches have since been delivered; the remaining proposals have no promised delivery dates. Completed changes remain in the [changelog](../CHANGELOG.md).
+The [roadmap](ROADMAP.md) records eleven discussed extensions, including general direct favourites, lighting presets and combined actions. Bounded installed-app selection, profiles and per-TV integration switches have since been delivered; the remaining proposals have no promised delivery dates. Completed changes remain in the [changelog](../CHANGELOG.md).
 
 ## Publication boundary
 

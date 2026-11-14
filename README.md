@@ -6,7 +6,7 @@ A lightweight dashboard for Philips Android TV: cameras, Ambilight, Philips Hue,
 
 Install as an Android app and optionally assign it as Home.
 
-**0.12.1 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
+**0.13.0 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
 
 ## A look at the interface
 
@@ -43,11 +43,11 @@ These native emulator screenshots use synthetic data and a reordered Home. The c
 </details>
 
 <details>
-<summary>Optional ARD / ZDF app shortcuts</summary>
+<summary>Choose your installed TV apps</summary>
 
-![ARD and ZDF switches in local settings](docs/images/web-media-shortcuts.png)
+![Installed app selection and explicit profile type](docs/images/web-profiles.png)
 
-Reviewed web preview with synthetic data. Enable installed media apps under **Startseite**, then arrange them under **Design**. Hue and UniFi can be disabled separately for each TV. App discovery does not establish account or playback readiness.
+Reviewed web preview with synthetic data. Under **Design → Profile → Apps für Mediathek**, choose up to four installed TV apps and save. Apply **Mediathek** to show them; **Standard** keeps the selection hidden. Arrange their tiles in Design. Discovery does not establish account or playback readiness.
 
 </details>
 
@@ -68,7 +68,7 @@ Reviewed web preview with synthetic data. Enable installed media apps under **St
 - A clean Home screen with large focus targets, direct TV access, devices, and system settings.
 - Up to 24 configured cameras, six per overview page, with one full-screen stream at a time. The overview retains its page when returning from settings.
 - Per-TV Hue/UniFi switches in web Startseite; disabled integrations are hidden and their stored connections/assignments are retained.
-- Optional ARD/ZDF Home shortcuts launch the installed TV apps; enable them in web **Startseite → Mediathek-Schnellzugriffe** and arrange them under Design.
+- Choose up to four installed TV apps under **Design → Profile → Apps für Mediathek**. Mediathek shows the saved choices as movable Home tiles; Standard hides them while retaining the selection. No app installation or provider sign-in is performed.
 - Ambilight modes, 16 named colors, a light preview, and remote/touch brightness control.
 - Local Hue Bridge pairing and explicit room selection, with room power, supported colors, brightness, and room-scoped scenes. No Home Assistant is required.
 - HDMI discovery through Android's TV input service. Available CEC names identify devices; selecting a card hands the chosen input to the TV's own app.
@@ -83,7 +83,7 @@ The Hue brightness slider batches input and sends one write for a coalesced gest
 
 The primary-TV presentation is the **shared project baseline**: Nordlicht, Ambilight first, cameras/Hue enabled and ARD/ZDF off. Other locations use the same app with independent web settings. Updates retain their saved choices. [Defaults and second-TV setup](docs/INSTALLATION.md#shared-project-baseline-and-per-tv-settings).
 
-Under **Design → Profile**, choose **Standard**, **Mediathek** or up to eight custom snapshots. Save, rename and update your own setup; provider credentials and TV names stay separate. [Profile guide](docs/PROFILES.md).
+Under **Design → Profile**, choose **Standard**, **Mediathek** or up to eight custom snapshots. Save, rename and update your own setup with an explicit Standard/Mediathek type. The confirmed band keeps the selected name and marks later edits as **Angepasst**; provider credentials and TV names stay separate. [Profile guide](docs/PROFILES.md).
 
 ![Standard, media and custom dashboard profiles](docs/images/web-profiles.png)
 
@@ -107,7 +107,7 @@ Requirements: Python 3, `curl`, JDK 21, Android SDK platform `android-34`, Build
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.12.1.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.13.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -121,14 +121,16 @@ Replace `DEVICE` with the explicitly selected authorized device. Preserve your s
 | Web settings → **Kameras** | Add local UniFi Protect RTSPS sources; existing saved links remain unchanged when a link field is left empty. |
 | **Hue → Raum & Bridge** | Enter the bridge address, press its physical button, connect, then choose and confirm the TV room. No whole-home group is selected automatically. |
 | Home network shortcut / Web settings → **Netzwerk** | Read the TV connection type and Android internet validation; no UniFi account is required. |
-| Web → **Startseite** | Save names/visibility, enable installed ARD/ZDF shortcuts, or disable Hue/UniFi for this TV. Empty names restore defaults. |
-| Web → **Design** | Arrange Home tiles and select a design, separate clock/text fonts, and the shared dashboard language. |
+| Web → **Startseite** | Save names/visibility or disable Hue/UniFi for this TV. Empty names restore defaults. |
+| Web → **Design** | Select a profile/type and up to four installed app favorites, arrange tiles and choose a design, fonts and language. |
 | Web → **TV-Info** | Read device facts, configure screensaver styling, download a redacted diagnostic, or explicitly request opening the dashboard. |
 | Web → **Netzwerk → UniFi Network** | Enter a local Network API key, validate the connection, then explicitly choose the site. Protect credentials are not reused. |
 | **Geräte** | Select a device/HDMI card. Opening the page only discovers sources; it does not switch them. |
 | **System → Bildschirmschoner** | Choose a style, date and dim level, or open the full-screen preview. Automatic activation remains a TV/system setting. |
 
 ## Validation and limits
+
+Version 0.13.0 lets you choose four installed TV apps and separates selected profile name, type and modified state. Both signed builds, 51 profile checks, 156 web checks, exhaustive retained eight-slot geometry and 163,840 seeded ten-slot cases passed. The browser fits 320–1280 px. All 25 primary-TV install/API/native assertions passed, including a generic app launch, Home return and exact restoration of the original Standard setup. The second TV remains on 0.11.6. [Detailed scope](docs/STATUS.md).
 
 Version 0.12.1 shows the TV-confirmed profile, address and check time above every settings section. Visible pages recheck every five seconds; failed or overdue reads become unconfirmed. Open drafts remain intact. All 146 web checks and the two-client/outage/recovery/responsive browser pass succeeded.
 
