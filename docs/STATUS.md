@@ -2,9 +2,15 @@
 
 [Documentation](README.md) · [Testing](TESTING.md) · [Earlier evidence](VALIDATION-HISTORY.md)
 
-**November 14, 2026 · 0.13.1 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
+**November 14, 2026 · 0.13.2 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
 
-The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.1 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.2 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+
+## 0.13.2 centered native color-key legend
+
+- Home centers the complete visible color-key group using measured text widths in the selected font and fixed gaps, rather than left-anchored slots. Inactive/hidden assignments create no holes. Assignment handling and the rest of Home are unchanged.
+- Both signed builds and the existing 156 web checks passed. Six primary-TV install/API retention checks confirmed 0.13.2/code 30, package hash, unchanged settings/profiles/model/saver/activation/Home/packages and retained web footer.
+- Actual QM163E screenshots passed three pixel checks with four, two and one visible key: group centers were 959.5, 959.5, 959.5 px against a 960 px canvas center (within 5 px). Temporary key assignments were restored to the exact original complete profile. No shortcut action, lamp/source command or second-TV update was sent. This verifies the rendered legend, not new physical key forwarding or every font/language combination.
 
 ## 0.13.1 repository and installed-version footer
 

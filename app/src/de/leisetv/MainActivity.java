@@ -280,11 +280,17 @@ public final class MainActivity extends Activity {
                 text(c,p,"OK",107,952,18,INK,true);text(c,p,UiText.t("Öffnen"),155,953,21,MUTED,false);
                 text(c,p,UiText.t("Pfeiltasten bewegen"),324,953,21,MUTED,false);
                 int[] colors={0xffF18489,0xff8DD6A5,0xffF0CE78,0xff89B9F2};
+                String[] labels=new String[4];float[] widths=new float[4];float total=0;int count=0;
+                p.setTextSize(21);p.setTypeface(TvStyle.NORMAL);
                 for(int i=0;i<4;i++){
                     String action=RemoteShortcuts.effectiveAction(MainActivity.this,i);
                     if("none".equals(action)||("cameras".equals(action)&&!prefs.getBoolean("show_camera",true)))continue;
-                    int x=96+i*300;p.setColor(colors[i]);c.drawRoundRect(x,1000,x+30,1012,6,6,p);
-                    text(c,p,RemoteShortcuts.label(action),x+43,1015,21,MUTED,false);
+                    labels[i]=RemoteShortcuts.label(action);widths[i]=43+p.measureText(labels[i]);total+=widths[i];count++;
+                }
+                final float gap=48;total+=Math.max(0,count-1)*gap;float x=(1920-total)/2;
+                for(int i=0;i<4;i++)if(labels[i]!=null){
+                    p.setColor(colors[i]);c.drawRoundRect(x,1000,x+30,1012,6,6,p);
+                    text(c,p,labels[i],x+43,1015,21,MUTED,false);x+=widths[i]+gap;
                 }
             }else if(prefs.getBoolean("show_date",true)){
                 String d=date.format(now);p.setTextSize(21);p.setTypeface(TvStyle.NORMAL);p.setColor(MUTED);c.drawText(d,1824-p.measureText(d),153,p);

@@ -152,3 +152,7 @@ The confirmed band separates the chosen name from **Typ: Standard/Mediathek** an
 ## Repository and version footer (0.13.1)
 
 Every authenticated settings section ends with a compact GitHub link and the installed version from the TV state response, matching the header. The footer wraps at narrow widths. Opening the repository uses a separate tab with no opener or referrer; merely reading settings makes no GitHub request.
+
+## Centered color-key legend (0.13.2)
+
+Home measures the visible labels in the selected text font, includes their color markers and fixed inter-item gaps, and centers the complete group on the 1920-pixel canvas. Disabled keys and hidden-camera/disabled-Hue assignments leave no reserved holes. Language, assignments and visibility keep their existing behavior.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.13.2 — 2026-11-14
+
+- Center the native Home color-key legend as one group using the actual visible labels and selected text font. Hidden/inactive keys leave no empty slots; shorter, translated or custom assignments remain centered. Key mappings and behavior are unchanged.
+- Both signed builds, 156 web checks and six primary-TV update/retention checks passed. Three actual screenshot checks verified centered groups with four, two and one visible keys; original assignments/profile were restored.
+
 ## 0.13.1 — 2026-11-14
 
 - Add a compact footer across the authenticated local web settings, linking to the public GitHub repository and showing the installed version returned by the TV. The link opens separately without sending the dashboard address as a referrer.
