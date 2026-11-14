@@ -160,3 +160,17 @@ Home measures the visible labels in the selected text font, includes their color
 ## Home connection icon (0.13.3)
 
 The compact Home badge draws a WLAN arc icon, Ethernet plug or neutral network symbol from Android's reported active transport. The symbol precedes the name and carries the existing green/amber/grey internet-validation color; there is no separate status dot. Text remains right-aligned and long names are fitted beside the symbol. WLAN arcs identify the connection type; they do not represent measured signal strength. No new permission, probe or router request is made.
+
+## Screenshot gallery refresh (0.13.3)
+
+All 29 reviewed images were recaptured on November 14, 2026. The 14 native captures use a disposable Android 14 / API 34 ARM64 emulator running the current public application's unchanged DEX; only VLC's packaged ABI differs from the ARMv7 production APK. The 15 web captures use the current HTML/translation assets with a loopback-only synthetic fixture, at desktop and phone viewports (1280 and 390 CSS pixels). Crops isolate the profile/app chooser or design editor where appropriate.
+
+| Captures | Source and displayed state |
+| --- | --- |
+| Home and four themes | Production Home drawing; synthetic camera names and injected WLAN name/validation, centered color-key legend; theme examples use a reordered layout with cameras in the lower row |
+| Cameras, Apps, System and screensaver | Current application views in the disposable emulator; eight synthetic camera records, no live footage or provider account |
+| Ambilight and Hue | Current views backed by loopback-only lighting fixtures; no real lamps or TV lighting commands |
+| HDMI, Network and UniFi | Production views displaying injected synthetic entries/states; no physical routing or live controller inventory |
+| Web settings | Synthetic Philips Test TV, Standard or Filmabend/Mediathek, four chosen example apps, empty credential inputs and the current GitHub/version footer |
+
+All images were visually reviewed, stripped of nonessential image metadata and checked locally with OCR before publication. Transient profile toasts were removed by taking fresh settled captures. The existing 29-image allowlist remains unchanged. The native navigation capture run passed 27 GUI checks; application DEX identity was checked against the public 0.13.3 APK. These images demonstrate current rendering and configuration workflows, not physical camera playback, HDMI routing, site health or additional supported hardware. Neither physical TV was contacted or updated for this documentation-only task.

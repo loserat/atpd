@@ -6,6 +6,10 @@
 
 The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.3 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
 
+## Current screenshot gallery (documentation-only refresh)
+
+All 29 reviewed screenshots now show 0.13.3: 14 native captures from an isolated emulator and 15 desktop/phone web captures with synthetic data. The public APK and emulator package share identical application DEX. The native capture run passed 27 GUI checks; visual review and local OCR cover the publication images. Theme examples retain a deliberate reordered layout while the main Home image shows the shared baseline, centered key legend and green WLAN symbol. The web images include current profiles/app selection and the GitHub/version footer. [Provenance](UI.md#screenshot-gallery-refresh-0133). No production code or physical TV was changed/contacted.
+
 ## 0.13.3 recognizable Home connection icon
 
 - Home adds a bright WLAN arc icon beside the name, an Ethernet plug for LAN and a neutral symbol for other/unknown transports. The symbol itself carries the existing internet-status color, followed by the name; the separate dot is removed and the compact focus target remains. No signal-strength measurement, permission, network setting change or probe is added.

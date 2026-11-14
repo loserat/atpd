@@ -1,5 +1,10 @@
 # Changelog
 
+## Screenshot documentation refresh — 2026-11-14
+
+- Replace all 29 reviewed gallery images with current 0.13.3 captures: 14 native screens and 15 desktop/phone web views, including centered color keys, the status-colored WLAN icon, app favorites, profile types and repository/version footer.
+- Update English/German README captions and capture provenance. Use isolated synthetic fixtures only; no production code, physical TV settings or installed TV version is changed by this documentation update.
+
 ## 0.13.3 — 2026-11-14
 
 - Add a clear WLAN icon beside the Home connection name, an Ethernet plug for LAN and a neutral network symbol for other/unknown transports. The symbol itself carries the existing green/amber/grey status, followed by the name; remove the separate dot. Fit long names within the same compact focus target; no signal-strength claim, permission or network probe is added.

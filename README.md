@@ -10,7 +10,9 @@ Install as an Android app and optionally assign it as Home.
 
 ## A look at the interface
 
-Native screens captured in an isolated emulator with synthetic cameras, light states, and HDMI entries. These are screenshots of the application, not design mockups. The web screenshots use a separate local preview with synthetic data. No private camera images, access codes, or real network details are shown.
+**Current interface: 0.13.3.** All 29 gallery images were refreshed on November 14, 2026: 14 native TV captures and 15 desktop/phone web views. Home shows the centered color-key legend and the status-colored WLAN icon; the web views include installed-app selection, explicit profile types and the GitHub/version footer.
+
+Native screens use the current application in an isolated emulator with synthetic cameras, lighting, HDMI and connectivity states. These are screenshots of the application, not design mockups. The web views use a separate local preview with synthetic data. No private camera images, access codes or real network details are shown. [Capture provenance and limits](docs/UI.md#screenshot-gallery-refresh-0133).
 
 ![Home with cameras, Ambilight, Hue, television, devices and system](docs/images/home.png)
 
@@ -45,7 +47,7 @@ These native emulator screenshots use synthetic data and a reordered Home. The c
 <details>
 <summary>Choose your installed TV apps</summary>
 
-![Installed app selection and explicit profile type](docs/images/web-profiles.png)
+![Choose up to four installed TV apps](docs/images/web-media-shortcuts.png)
 
 Reviewed web preview with synthetic data. Under **Design → Profile → Apps für Mediathek**, choose up to four installed TV apps and save. Apply **Mediathek** to show them; **Standard** keeps the selection hidden. Arrange their tiles in Design. Discovery does not establish account or playback readiness.
 

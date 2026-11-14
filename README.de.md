@@ -10,7 +10,9 @@ Als Android-App installieren und bei Bedarf als Home-Oberfläche zuordnen.
 
 ## So sieht es aus
 
-Native Ansichten aus einem separaten Simulator mit künstlichen Kameras, Lichtzuständen und HDMI-Einträgen. Das sind Screenshots der Anwendung, keine Entwurfsbilder. Die Web-Screenshots stammen aus einer separaten lokalen Vorschau mit erfundenen Daten. Private Kamerabilder, Zugangscodes und echte Netzwerkdaten sind nicht enthalten.
+**Aktuelle Oberfläche: 0.13.3.** Alle 29 Galerie-Bilder wurden am 14. November 2026 erneuert: 14 TV-Aufnahmen und 15 Web-Ansichten für Desktop und Handy. Die Startseite zeigt die mittigen Farbtasten und das farbige WLAN-Symbol; im IP-Dashboard sind App-Auswahl, Profiltypen und der GitHub-/Versionsbereich sichtbar.
+
+Die aktuelle Anwendung läuft dafür in einem separaten Emulator mit künstlichen Kamera-, Licht-, HDMI- und Verbindungsdaten. Das sind Screenshots der Anwendung, keine Entwurfsbilder. Die Web-Ansichten stammen aus einer lokalen Vorschau mit Beispieldaten. Private Kamerabilder, Zugangscodes und echte Netzwerkdaten sind nicht enthalten. [Herkunft und Grenzen der Aufnahmen (Englisch)](docs/UI.md#screenshot-gallery-refresh-0133).
 
 ![Startseite mit Kameras, Ambilight, Hue, Fernsehen, Geräten und System](docs/images/home.png)
 
@@ -45,7 +47,7 @@ Native Emulator-Screenshots mit Testdaten und eigener Reihenfolge. Die Kamera-Ka
 <details>
 <summary>Installierte TV-Apps selbst auswählen</summary>
 
-![App-Auswahl und eindeutiger Profiltyp](docs/images/web-profiles.png)
+![Bis zu vier installierte TV-Apps auswählen](docs/images/web-media-shortcuts.png)
 
 Geprüfte Web-Vorschau mit Testdaten. Unter **Design → Profile → Apps für Mediathek** bis zu vier installierte TV-Apps auswählen und speichern. **Mediathek** zeigt sie an; **Standard** behält die Auswahl ausgeblendet gespeichert. Die Kacheln bleiben unter Design verschiebbar. Die Erkennung bestätigt keine Anmeldung oder Wiedergabe.
 

@@ -51,3 +51,7 @@ Inspect staged changes before pushing. If a real credential is found in publishe
 ## 0.13.0 publication check
 
 The exact 127-file staged snapshot passed 75 ignore/publication cases, with the same 29 reviewed image exceptions. Gitleaks 8.30.1 with full redaction found no secrets; a separate known-private-device-address check found no matches. All 212 local Markdown link targets resolved. The two refreshed profile images were captured from synthetic local fixture data and visually reviewed. Private builds, signing material and physical-device evidence remain excluded. These checks do not rewrite history or guarantee detection of every private value.
+
+## Current 0.13.3 screenshot refresh
+
+All 29 allowlisted images were replaced with reviewed current captures: 14 native emulator screens and 15 loopback web views. Application DEX matched the public APK, and 27 native navigation/capture checks passed. Local OCR processed all 29 images without errors and found only allowlisted synthetic addresses, with no access-code labels. Image metadata/format checks passed, as did the five Home pixel checks for centered legends and green WLAN glyphs. The final staged snapshot retained 127 files and 29 exact image exceptions; Gitleaks found no secrets and all 215 local Markdown targets resolved. These checks support the synthetic publication boundary and do not establish real-provider or additional hardware acceptance.
