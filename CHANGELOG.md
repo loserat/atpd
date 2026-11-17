@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.14.0 — 2026-11-17
+
+- Add web **Favoriten** for one named HDMI shortcut and up to three exact camera favorites, with local discovery, explicit save, retained drafts and missing-source feedback. Configuration never opens a source.
+- Add movable native Home favorite tiles. Fresh clicks revalidate their exact source; explicit deleted camera IDs cannot fall back to another feed. Existing default-camera fallback remains available.
+- Preserve six/eight/ten-slot orders and extend to fourteen reserved IDs. Above ten visible destinations, use three compact rows with adjacent-row D-pad navigation and the lowest-row network link.
+- Capture direct favorite choices in new custom profiles; presets and older profiles retain the current choice. Keep source URLs, certificates and provider credentials separate.
+- Pass both signed builds, 58 production profile/config checks, 173 web checks, retained geometry suites plus 163,840 new fourteen-slot cases, and 113 native emulator assertions including intercepted camera dispatch, stale targets, legacy profile handling and actual remote focus movement. Browser save/reload and 320–1280 px widths passed; selected camera controls stay editable immediately after saving.
+- Physical-TV installation and real HDMI/camera acceptance are deferred at the owner's request. The initial home-network preflight was unreachable; neither TV was updated. Public screenshots use synthetic data.
+
 ## Screenshot documentation refresh — 2026-11-14
 
 - Replace all 29 reviewed gallery images with current 0.13.3 captures: 14 native screens and 15 desktop/phone web views, including centered color keys, the status-colored WLAN icon, app favorites, profile types and repository/version footer.

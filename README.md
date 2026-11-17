@@ -6,11 +6,11 @@ A lightweight dashboard for Philips Android TV: cameras, Ambilight, Philips Hue,
 
 Install as an Android app and optionally assign it as Home.
 
-**0.13.3 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
+**0.14.0 · experimental beta.** Repository documentation is in English; the TV interface and local web settings default to German, with a shared English option. The TV interface has no project name or logo; Android lists the app as **TV-Dashboard**.
 
 ## A look at the interface
 
-**Current interface: 0.13.3.** All 29 gallery images were refreshed on November 14, 2026: 14 native TV captures and 15 desktop/phone web views. Home shows the centered color-key legend and the status-colored WLAN icon; the web views include installed-app selection, explicit profile types and the GitHub/version footer.
+**Gallery baseline: 0.13.3; new favorites views: 0.14.0.** All 29 gallery images were refreshed on November 14, 2026: 14 native TV captures and 15 desktop/phone web views. Home shows the centered color-key legend and the status-colored WLAN icon; the web views include installed-app selection, explicit profile types and the GitHub/version footer.
 
 Native screens use the current application in an isolated emulator with synthetic cameras, lighting, HDMI and connectivity states. These are screenshots of the application, not design mockups. The web views use a separate local preview with synthetic data. No private camera images, access codes or real network details are shown. [Capture provenance and limits](docs/UI.md#screenshot-gallery-refresh-0133).
 
@@ -52,6 +52,14 @@ These native emulator screenshots use synthetic data and a reordered Home. The c
 Reviewed web preview with synthetic data. Under **Design → Profile → Apps für Mediathek**, choose up to four installed TV apps and save. Apply **Mediathek** to show them; **Standard** keeps the selection hidden. Arrange their tiles in Design. Discovery does not establish account or playback readiness.
 
 </details>
+
+## Direct Apple TV and camera favorites
+
+Under web **Favoriten**, choose a named HDMI input and up to three camera favorites. Save explicitly, then move their Home tiles under Design. Source selection happens only after TV OK; removed targets never fall back to another input/feed. Profiles include these choices, and a crowded Home uses three compact rows. [Setup and limits](docs/FAVORITES.md).
+
+![HDMI and camera favorites in current web settings](docs/images/web-favorites.jpg)
+
+[Phone view](docs/images/web-favorites-mobile.jpg). This release is built and locally tested; physical-TV installation is deferred at the owner's request.
 
 ## What it does
 
@@ -109,7 +117,7 @@ Requirements: Python 3, `curl`, JDK 21, Android SDK platform `android-34`, Build
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.13.3.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.14.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -154,7 +162,7 @@ Other TV models, authenticated HTTPS-only Ambilight adapters, extended live-came
 
 ## Proposed next steps
 
-[Roadmap](docs/ROADMAP.md) records the discussed extensions, prerequisites and acceptance boundaries. The suggested starting order is direct favourites, shared lighting presets, then combined actions such as Filmabend. Smart-home widgets, a UniFi summary, portable settings, guided updates, first-run setup and doorbell previews are also proposals, not delivered features or scheduled releases.
+[Roadmap](docs/ROADMAP.md) records the discussed extensions, prerequisites and acceptance boundaries. Direct favorites are implemented in 0.14.0 with physical acceptance pending. Suggested next steps are shared lighting presets, then combined actions such as Filmabend. Smart-home widgets, a UniFi summary, portable settings, guided updates, first-run setup and doorbell previews are also proposals, not delivered features or scheduled releases.
 
 ## Documentation
 

@@ -174,3 +174,7 @@ All 29 reviewed images were recaptured on November 14, 2026. The 14 native captu
 | Web settings | Synthetic Philips Test TV, Standard or Filmabend/Mediathek, four chosen example apps, empty credential inputs and the current GitHub/version footer |
 
 All images were visually reviewed, stripped of nonessential image metadata and checked locally with OCR before publication. Transient profile toasts were removed by taking fresh settled captures. The existing 29-image allowlist remains unchanged. The native navigation capture run passed 27 GUI checks; application DEX identity was checked against the public 0.13.3 APK. These images demonstrate current rendering and configuration workflows, not physical camera playback, HDMI routing, site health or additional supported hardware. Neither physical TV was contacted or updated for this documentation-only task.
+
+## Direct Home favorites (0.14.0)
+
+A ninth web tab, **Favoriten**, separates one named HDMI shortcut and up to three selected camera records. Metadata refresh retains open drafts; unavailable entries stay identifiable/removable. Camera visibility gates direct camera tiles. Home expands to fourteen reserved slots and, above ten visible cards, three compact rows (5/5/4 at maximum), with adjacent-row D-pad movement and a bottom-row network link. The current synthetic views are [Desktop](images/web-favorites.jpg) and [Phone](images/web-favorites-mobile.jpg). Earlier base-gallery images are explicitly marked 0.13.3. [Workflow and validation boundary](FAVORITES.md).

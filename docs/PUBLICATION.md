@@ -52,6 +52,10 @@ Inspect staged changes before pushing. If a real credential is found in publishe
 
 The exact 127-file staged snapshot passed 75 ignore/publication cases, with the same 29 reviewed image exceptions. Gitleaks 8.30.1 with full redaction found no secrets; a separate known-private-device-address check found no matches. All 212 local Markdown link targets resolved. The two refreshed profile images were captured from synthetic local fixture data and visually reviewed. Private builds, signing material and physical-device evidence remain excluded. These checks do not rewrite history or guarantee detection of every private value.
 
-## Current 0.13.3 screenshot refresh
+## 0.13.3 screenshot refresh
 
 All 29 allowlisted images were replaced with reviewed current captures: 14 native emulator screens and 15 loopback web views. Application DEX matched the public APK, and 27 native navigation/capture checks passed. Local OCR processed all 29 images without errors and found only allowlisted synthetic addresses, with no access-code labels. Image metadata/format checks passed, as did the five Home pixel checks for centered legends and green WLAN glyphs. The final staged snapshot retained 127 files and 29 exact image exceptions; Gitleaks found no secrets and all 215 local Markdown targets resolved. These checks support the synthetic publication boundary and do not establish real-provider or additional hardware acceptance.
+
+## Current 0.14.0 favorites publication
+
+The 134-file staged snapshot passed 77 publication-rule cases with 31 exact reviewed image exceptions. The two additional desktop/phone captures show synthetic local favorite choices and were visually reviewed; the 29 earlier gallery views retain their explicitly labelled 0.13.3 baseline. Image output is metadata-stripped. All 234 local Markdown targets resolved. Gitleaks 8.30.1 with full redaction found no secrets in the exact staged contents; the known-private-device-address check also found no matches. Public/private APKs, signing material and raw native/browser evidence remain excluded. No physical TV was updated for this publication; these staged-tree checks do not replace a full history audit or physical acceptance.

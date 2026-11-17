@@ -2,7 +2,7 @@
 
 [Documentation](README.md) · [Current validation](STATUS.md) · [Architecture](ARCHITECTURE.md)
 
-Discussion baseline: **0.11.2, November 13, 2026**. This document records ideas for future work. The broader extensions below have no assigned release date. Since that baseline, 0.11.5 added per-TV Hue/UniFi switches and 0.11.6 added two bounded ARD/ZDF app tiles; these completed increments are documented in [current status](STATUS.md). Version 0.12.0 also adds local dashboard profiles; these store presentation choices, not lighting commands or portable provider setups. Version 0.13.0 implements a bounded selection of four installed TV apps with explicit profile types. Arbitrary launch URLs/intents, portable profiles and the remaining proposals are **not implemented or verified**. Suggested ordering is a recommendation, not an agreed implementation schedule.
+Discussion baseline: **0.11.2, November 13, 2026**. This document records ideas for future work. The broader extensions below have no assigned release date. Since that baseline, 0.11.5 added per-TV Hue/UniFi switches and 0.11.6 added two bounded ARD/ZDF app tiles; these completed increments are documented in [current status](STATUS.md). Version 0.12.0 also adds local dashboard profiles; these store presentation choices, not lighting commands or portable provider setups. Version 0.13.0 implements a bounded selection of four installed TV apps with explicit profile types. Version 0.14.0 adds one direct HDMI favorite and three camera favorites, built/tested locally with physical installation deferred. Arbitrary launch URLs/intents, portable profiles and the remaining proposals are **not implemented or verified**. Suggested ordering is a recommendation, not an agreed implementation schedule.
 
 ## Product direction
 
@@ -12,7 +12,7 @@ The current release already has cameras, separate Ambilight/Hue controls, an HDM
 
 ## Suggested first increments
 
-1. **Direct favourites:** open a chosen HDMI input, camera or existing destination without going through its overview.
+1. **Direct favourites:** the bounded HDMI/three-camera increment is built in 0.14.0; physical acceptance is pending. [Setup](FAVORITES.md).
 2. **Shared lighting presets:** save explicitly chosen Hue/Ambilight combinations and recall them from one place.
 3. **Combined actions:** build a configurable “Filmabend” action using the validated favourites and lighting steps.
 
@@ -22,7 +22,7 @@ Each increment should be independently usable before the next one starts. A fail
 
 | Proposal | Everyday benefit | Dependency or boundary |
 | --- | --- | --- |
-| Direct favourites | Open a specific input, camera or destination in one selection | Revalidate the configured target; existing overview pages remain available |
+| Direct favourites (0.14.0 built) | Open a specific input, camera or destination in one selection | Revalidate the configured target; existing overview pages remain available |
 | Combined actions | A named action such as Filmabend selects a source and applies lighting | Define the ordered steps, allowed actions and partial-failure behavior first |
 | Shared lighting presets | Recall a saved Hue/Ambilight combination such as reading or a quiet evening | Use each adapter's capabilities and explicit room scope; no video-synchronisation promise |
 | Small smart-home widgets | Show selected temperatures, humidity or open-window states | Requires a configured data source such as Home Assistant; no automatic import of every device |

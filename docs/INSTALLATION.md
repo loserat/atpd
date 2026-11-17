@@ -12,7 +12,7 @@ python3 tests/check_palette.py
 python3 app/build.py
 ```
 
-`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.13.3.apk`; generated dependencies and APKs are ignored by Git.
+`fetch_deps.py` downloads LibVLC 3.7.7 from Maven Central and verifies the pinned SHA256. The build packages `armeabi-v7a` and produces `dist/TV-Dashboard-0.14.0.apk`; generated dependencies and APKs are ignored by Git.
 
 ## Signing and retained data
 
@@ -30,7 +30,7 @@ Select the actual device explicitly, especially when an emulator is also running
 
 ```sh
 adb devices
-adb -s DEVICE install -r dist/TV-Dashboard-0.13.3.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.14.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -86,7 +86,7 @@ Open **System → Web-Einstellungen** on the TV. The page shows its HTTPS addres
 
 Under **Startseite → Funktionen an diesem TV**, disable Hue and/or UniFi when absent at that location, then choose **Funktionen speichern**. Existing installations default to enabled. This changes the dashboard's per-device presentation and provider eligibility, not the lights/router themselves; retained connections and shortcuts return when enabled again. Passive TV connectivity and Ambilight remain independent.
 
-Under **Design → Profile → Apps für Mediathek**, select up to four installed TV apps and **App-Auswahl speichern**. With Standard active, choices stay hidden until Mediathek is applied. With Mediathek active, saving updates the visible tiles immediately. Use **App-Liste aktualisieren** after installing/removing an app. A retained missing app is labelled unavailable and can be deselected; it is never installed automatically. Rearrange positional favorites under **Design & Anordnung**. Old six/eight-item orders retain their relative order and gain the remaining reserved positions, for ten in total. [Profiles and types](PROFILES.md).
+Under **Design → Profile → Apps für Mediathek**, select up to four installed TV apps and **App-Auswahl speichern**. With Standard active, choices stay hidden until Mediathek is applied. With Mediathek active, saving updates the visible tiles immediately. Use **App-Liste aktualisieren** after installing/removing an app. A retained missing app is labelled unavailable and can be deselected; it is never installed automatically. Rearrange positional favorites under **Design & Anordnung**. Old six/eight/ten-item orders retain their relative order and gain the remaining reserved positions, for fourteen in total. [Profiles and types](PROFILES.md).
 
 Add camera RTSPS links in the web page. Existing links are retained when their fields are left empty. Removing a dashboard camera does not delete the Protect camera or its recordings.
 
@@ -113,3 +113,9 @@ Since 0.11.2, use the separate **Shortcuts** tab to choose each remote colour ke
 Reload an already-open IP dashboard after the update. The band above the navigation shows **Am TV eingestellt**, its selected profile name, **Typ: Standard/Mediathek**, this page's TV address and confirmation time. Later differences retain the chosen name and add **Angepasst**. Choosing another entry in the saved-profile editor alone does not apply it; use its **Übernehmen** action. The same preset is marked in Design. A visible authenticated page reads profile settings every five seconds; returning/focusing rechecks immediately. Hidden or signed-out pages stop polling.
 
 If a read fails, exceeds its eight-second deadline or becomes overdue, the last profile is shown as **Zuletzt bestätigt / Stand unbestätigt**, without a positive active-card/connection claim. Recovery is automatic. This reads saved dashboard preferences; it does not prove that Home is currently visible or that a provider is online. Draft fields are independent and are not overwritten by those reads. [Profile behavior](PROFILES.md).
+
+## Direct Home favorites (0.14.0)
+
+After updating, reload the browser and open **Favoriten**. Enable a named HDMI tile, explicitly select its port and choose up to three camera records, then save. Saving does not open a source. Move the reserved favorite slots in Design; hidden cameras also hide their direct favorites. Old orders and source libraries are retained, with new direct tiles opt-in. [Workflow and API](FAVORITES.md).
+
+This release is built/tested locally only. The owner deferred physical-TV installation; neither TV was updated for 0.14.0. Reconnect and inspect the exact target before a later same-signature update. Public builds and private retained-key installation variants are separate; private signing material is never published.

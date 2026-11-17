@@ -19,6 +19,7 @@ final class CameraLibrary {
         JSONObject library=read(context);JSONArray cameras=library.getJSONArray("cameras");
         String desired=id==null?library.optString("defaultCameraId"):id;
         for(int i=0;i<cameras.length();i++)if(desired.equals(cameras.getJSONObject(i).optString("id")))return cameras.getJSONObject(i);
+        if(id!=null)throw new IOException("Selected camera no longer present");
         for(int i=0;i<cameras.length();i++)if(ready(cameras.getJSONObject(i)))return cameras.getJSONObject(i);
         throw new IOException("No configured camera");
     }

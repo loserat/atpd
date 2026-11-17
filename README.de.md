@@ -6,11 +6,11 @@ Eine schlanke Startoberfläche für Philips Android TV: Kameras, Ambilight, Phil
 
 Als Android-App installieren und bei Bedarf als Home-Oberfläche zuordnen.
 
-**0.13.3 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
+**0.14.0 · experimentelle Beta.** Die Repository-Dokumentation ist auf Englisch; TV-Oberfläche und lokale Web-Einstellungen starten auf Deutsch und lassen sich gemeinsam auf Englisch umstellen. Am TV erscheinen kein Projektname und kein Logo. In Android heißt die App **TV-Dashboard**.
 
 ## So sieht es aus
 
-**Aktuelle Oberfläche: 0.13.3.** Alle 29 Galerie-Bilder wurden am 14. November 2026 erneuert: 14 TV-Aufnahmen und 15 Web-Ansichten für Desktop und Handy. Die Startseite zeigt die mittigen Farbtasten und das farbige WLAN-Symbol; im IP-Dashboard sind App-Auswahl, Profiltypen und der GitHub-/Versionsbereich sichtbar.
+**Basisgalerie: 0.13.3; neue Favoritenansichten: 0.14.0.** Alle 29 Galerie-Bilder wurden am 14. November 2026 erneuert: 14 TV-Aufnahmen und 15 Web-Ansichten für Desktop und Handy. Die Startseite zeigt die mittigen Farbtasten und das farbige WLAN-Symbol; im IP-Dashboard sind App-Auswahl, Profiltypen und der GitHub-/Versionsbereich sichtbar.
 
 Die aktuelle Anwendung läuft dafür in einem separaten Emulator mit künstlichen Kamera-, Licht-, HDMI- und Verbindungsdaten. Das sind Screenshots der Anwendung, keine Entwurfsbilder. Die Web-Ansichten stammen aus einer lokalen Vorschau mit Beispieldaten. Private Kamerabilder, Zugangscodes und echte Netzwerkdaten sind nicht enthalten. [Herkunft und Grenzen der Aufnahmen (Englisch)](docs/UI.md#screenshot-gallery-refresh-0133).
 
@@ -52,6 +52,14 @@ Native Emulator-Screenshots mit Testdaten und eigener Reihenfolge. Die Kamera-Ka
 Geprüfte Web-Vorschau mit Testdaten. Unter **Design → Profile → Apps für Mediathek** bis zu vier installierte TV-Apps auswählen und speichern. **Mediathek** zeigt sie an; **Standard** behält die Auswahl ausgeblendet gespeichert. Die Kacheln bleiben unter Design verschiebbar. Die Erkennung bestätigt keine Anmeldung oder Wiedergabe.
 
 </details>
+
+## Apple TV und Kameras direkt öffnen
+
+Im IP-Dashboard unter **Favoriten** einen benannten HDMI-Eingang und bis zu drei Kameras auswählen und speichern. Die neuen TV-Kacheln lassen sich unter Design verschieben. Erst OK am TV öffnet die Quelle; entfernte Ziele führen zu keinem anderen Eingang oder Kamerabild. Profile speichern die Auswahl mit. Bei vielen Kacheln nutzt die Startseite drei kompakte Reihen. [Einrichtung und Grenzen (Englisch)](docs/FAVORITES.md).
+
+![Neue HDMI- und Kamera-Favoriten](docs/images/web-favorites.jpg)
+
+[Handyansicht](docs/images/web-favorites-mobile.jpg). Der Stand ist gebaut und lokal geprüft; die Installation auf den echten Fernsehern ist auf Wunsch noch ausgesetzt.
 
 ## Funktionen
 
@@ -109,7 +117,7 @@ Voraussetzungen: Python 3, `curl`, JDK 21, Android-SDK-Plattform `android-34`, B
 python3 app/fetch_deps.py
 python3 tests/check_palette.py
 python3 app/build.py
-adb -s DEVICE install -r dist/TV-Dashboard-0.13.3.apk
+adb -s DEVICE install -r dist/TV-Dashboard-0.14.0.apk
 adb -s DEVICE shell am start -n de.leisetv/.MainActivity
 ```
 
@@ -154,7 +162,7 @@ Andere TV-Modelle, Ambilight-Geräte mit zwingender HTTPS-Kopplung, längerer Li
 
 ## Vorgeschlagene nächste Schritte
 
-Die [Roadmap auf Englisch](docs/ROADMAP.md) dokumentiert die besprochenen Erweiterungen mit Voraussetzungen und Prüfkriterien. Als Reihenfolge sind direkte Favoriten, gemeinsame Licht-Presets und danach kombinierte Aktionen wie „Filmabend“ vorgeschlagen. Smart-Home-Anzeigen, UniFi-Kurzstatus, weitere Kachelgrößen, zeitabhängige Designs, Einstellungsübertragung, geführte Updates, Einrichtungsassistent und Klingelvorschau sind ebenfalls Ideen. Sie sind noch nicht umgesetzt und haben keinen festgelegten Veröffentlichungstermin.
+Die [Roadmap auf Englisch](docs/ROADMAP.md) dokumentiert die besprochenen Erweiterungen mit Voraussetzungen und Prüfkriterien. Direkte Favoriten sind in 0.14.0 umgesetzt; die Prüfung am echten TV steht noch aus. Als nächste Schritte sind gemeinsame Licht-Presets und danach kombinierte Aktionen wie „Filmabend“ vorgeschlagen. Smart-Home-Anzeigen, UniFi-Kurzstatus, weitere Kachelgrößen, zeitabhängige Designs, Einstellungsübertragung, geführte Updates, Einrichtungsassistent und Klingelvorschau sind ebenfalls Ideen. Sie sind noch nicht umgesetzt und haben keinen festgelegten Veröffentlichungstermin.
 
 ## Dokumentation
 

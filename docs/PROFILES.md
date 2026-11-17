@@ -12,7 +12,7 @@ Reviewed synthetic preview, including the custom name and app inventory. [Phone 
 
 | Profile | Home and favorites | Integrations | Other defaults |
 | --- | --- | --- | --- |
-| Standard | Ambilight / Cameras / Hue above Television / Devices / System; favorite choices retained but hidden | Hue and UniFi enabled | Nordlicht, featured rows, clock/date on, German/default fonts and default color keys |
+| Standard | Ambilight / Cameras / Hue above Television / Devices / System; app choices retained but hidden; direct HDMI/camera choices retained | Hue and UniFi enabled | Nordlicht, featured rows, clock/date on, German/default fonts and default color keys |
 | Mediathek | Ambilight followed by your selected apps, then Television / Devices / System | Cameras hidden, Hue/UniFi disabled | Same neutral design, clock/date, language/fonts and key defaults |
 
 Use **Übernehmen** on a preset card to apply it. These templates cannot be overwritten, renamed or deleted. They retain the current favorite IDs rather than forcing ARD/ZDF again. Personal TV names, provider configuration and light states stay separate. Turning an integration on does not configure or pair it.
@@ -26,7 +26,7 @@ Use **Übernehmen** on a preset card to apply it. These templates cannot be over
 
 The list contains local Android TV launchers, excluding this dashboard. **App-Liste aktualisieren** re-reads installation state and preserves the open selection draft. A selected app removed later remains labelled **Nicht installiert** and can be deselected; it cannot be newly added while unavailable. Missing apps are never installed automatically. Selecting/saving does not sign in, start playback or open an app; TV OK launches it explicitly. The launcher inventory is bounded to 128 entries.
 
-The four favorites use positional slots; changing the selection changes which app occupies those slots. There are ten reserved Home positions in total. Old six/eight-item orders gain missing slots while preserving every original relative position. Hidden slots keep their saved position. Nine/ten visible tiles use five per row.
+The four favorites use positional slots; changing the selection changes which app occupies those slots. There are fourteen reserved Home positions in total, including the direct HDMI and three camera slots. Old six/eight/ten-item orders gain missing slots while preserving every original relative position. Hidden slots keep their saved position. Nine/ten visible tiles use five per row; eleven to fourteen use three compact rows.
 
 ## Create and adjust your own profile
 
@@ -45,7 +45,7 @@ A profile captures **persisted settings**, not unsaved form drafts. Applying a p
 
 An explicitly applied custom profile keeps its selected name even if identical to a preset. Current settings are compared with that selected snapshot. Exact matches are marked confirmed; differences retain the selected name/type and add **Angepasst**. Updating that snapshot from the saved current setup clears the difference. Reading status never applies settings or rewrites a saved profile.
 
-Older setups without a stored selected ID infer a matching profile, with built-ins first. If nothing matches, the type provides a fallback with the modified marker. Matching ignores only positions of unused reserved app slots, preventing newly appended hidden slots from making an old unchanged setup appear modified. Full stored orders remain retained and restorable.
+Older setups without a stored selected ID infer a matching profile, with built-ins first. If nothing matches, the type provides a fallback with the modified marker. Matching ignores positions of unused reserved app and direct-favorite slots, preventing newly appended hidden slots from making an old unchanged setup appear modified. Full stored orders remain retained and restorable.
 
 ## Profile scope
 
@@ -53,9 +53,10 @@ Older setups without a stored selected ID infer a matching profile, with built-i
 | --- | --- |
 | Explicit Standard/Mediathek type | Home heading, web name and sales model |
 | Camera/clock/date visibility | Camera library, stream URLs, default camera and certificates |
-| Theme, layout and ten-position order | Provider addresses, pairing, room/site and encrypted keys |
+| Theme, layout and fourteen-position order | Provider addresses, pairing, room/site and encrypted keys |
 | Hue/UniFi feature switches | Actual light states and provider availability |
 | Favorite app IDs and enabled state | App installation, sign-in and playback |
+| Direct HDMI reference/name and camera-favorite IDs | Physical routing and camera playback |
 | Shared language and clock/text fonts | Android system language, Home assignment and packages |
 | Four color-key assignments | Screensaver/activation and Hue standby automation |
 
@@ -69,7 +70,7 @@ Status updates preserve independent form values, focus and drafts. The address i
 
 ## Storage and API
 
-`dashboard_profiles_v1` holds at most eight private `{id,name,config}` snapshots, without provider credentials. The strict config contains `type`, `display`, `appearance`, `integrations`, `appShortcuts`, `interface` and `remote`. Older six-section configs and six/eight-slot orders normalize read-only. Apply persists `dashboard_profile_id` and `profile_type` alongside the allowlisted presentation in one commit. Built-ins are generated from fixed defaults and the current favorite selection.
+`dashboard_profiles_v1` holds at most eight private `{id,name,config}` snapshots, without provider credentials. The strict config contains `type`, `display`, `appearance`, `integrations`, `appShortcuts`, `favorites`, `interface` and `remote`. Older six-section configs and six/eight/ten-slot orders normalize read-only. Apply persists `dashboard_profile_id` and `profile_type` alongside the allowlisted presentation in one commit. Built-ins are generated from fixed defaults and the current favorite selection.
 
 | Authenticated route | Input / result |
 | --- | --- |
@@ -87,4 +88,8 @@ Profiles remain local to one installation. Export/import, cross-TV sync and GitH
 
 ## Validation
 
-`python3 tests/check_profiles.py`: 51 production validation/persistence checks with in-memory Android/snapshot adapters. `node tests/check_web.cjs`: 156 state/payload checks. `python3 tests/check_home_layout.py`: exhaustive retained eight-slot geometry plus 163,840 seeded ten-slot cases. Browser, installed-app discovery and actual TV launch/restoration evidence are listed separately in [Current status](STATUS.md).
+`python3 tests/check_profiles.py`: 58 production validation/persistence checks with in-memory Android/snapshot adapters. `node tests/check_web.cjs`: 173 state/payload checks. `python3 tests/check_home_layout.py`: exhaustive retained eight-slot geometry plus 163,840 seeded ten-slot and 163,840 seeded fourteen-slot cases. Browser, installed-app discovery and actual TV launch/restoration evidence are listed separately in [Current status](STATUS.md).
+
+## Direct favorites in profiles (0.14.0)
+
+New custom snapshots include `favorites:{input:{enabled,id,name},cameras:[id...]}`. Built-ins retain the current direct-favorite targets; camera visibility still hides those camera tiles. An older stored snapshot without this field inherits the current local favorite choice read-only when viewed/applied. Matching ignores unused direct-favorite positions, while preserving full stored order. Source references are local to the TV and are revalidated on click; profile apply sends no source command. [Full guide](FAVORITES.md).

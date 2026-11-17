@@ -17,14 +17,15 @@
 | [Changelog](../CHANGELOG.md) | Changes by version |
 | [Validation history](VALIDATION-HISTORY.md) | Earlier checks, failed attempts and limitations retained through 0.6.1 |
 
-## Current application: 0.13.3
+## Current application: 0.14.0
 
-The TV provides native Home, cameras, Ambilight, Hue, HDMI selection and System screens. The local web dashboard has eight sections:
+The TV provides native Home, cameras, Ambilight, Hue, HDMI selection and System screens. The local web dashboard has nine sections:
 
 | Web section | Settings and information |
 | --- | --- |
 | Startseite | TV heading/name, camera/clock/date visibility and per-TV Hue/UniFi switches |
 | Design | Confirmed profile name/type, custom profiles, up to four installed app favorites, themes, tile order/layout, shared language and clock/text fonts |
+| Favoriten | One named HDMI shortcut and up to three exact camera favorites |
 | Shortcuts | Four colour-key assignments, draft preview and draft-only default reset |
 | Kameras | Camera names, protected stream setup and default camera |
 | Hue | Bridge pairing, selected room and optional standby-off setting |
@@ -45,3 +46,5 @@ The [roadmap](ROADMAP.md) records eleven discussed extensions, including general
 ## Publication boundary
 
 The repository and documentation are public. Device addresses, account data, camera imagery, actual application keys and signing material are not part of the published project. Examples and gallery images use synthetic data. Portable settings export and a guided updater are proposals, not existing backup/update facilities; current signing, retained-data and rollback guidance is in [Installation](INSTALLATION.md).
+
+[Direct Home favorites](FAVORITES.md) documents the new configuration, storage and device-validation boundary. The 0.14.0 build is not yet installed on either physical TV; installation is deferred at the owner's request.

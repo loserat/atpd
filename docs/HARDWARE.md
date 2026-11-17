@@ -22,7 +22,7 @@ The second TV's last observed Home has **Ambilight, ARD Mediathek and ZDF Mediat
 
 The work covered installation/debugging access, Android-12 HTTPS repair, owner-approved Home assignment, the manual Ambilight adapter, per-TV integration switches and Mediathek shortcuts. Detailed test results and limitations follow below and in [Current status](STATUS.md). Setup and the recorded Home recovery commands are in [Installation](INSTALLATION.md#home-assignment).
 
-The current repository and primary TV are **0.13.3**. Its baseline appearance matches the primary TV; the second TV remains on its separately verified **0.11.6** with its own optional configuration. Publishing source alone does not update another TV. Recheck the selected target and its retained settings before further device work. Standby/reboot persistence, actual Mediathek playback and the other outstanding checks remain open.
+The repository is now **0.14.0**; the primary TV's last verified installation remains **0.13.3**. Physical installation of 0.14.0 is deferred at the owner's request. Its baseline appearance matches the primary TV; the second TV remains on its separately verified **0.11.6** with its own optional configuration. Publishing source alone does not update another TV. Recheck the selected target and its retained settings before further device work. Standby/reboot persistence, actual Mediathek playback and the other outstanding checks remain open.
 
 GitHub preserves the public source, guides, test helpers and reviewed synthetic images. Device settings, signing keys, provider credentials and raw evidence stay private; the repository is not a portable backup of either TV's app data.
 

@@ -14,7 +14,7 @@ Run `python3 tests/check_gitignore.py` to check Git's actual ignore behavior and
 
 | Suite | Checks | What it establishes |
 | --- | ---: | --- |
-| Production profile configuration/persistence | 51 | Strict presets/config, atomic commits, unrelated-key retention, CRUD and limits with in-memory Android adapters |
+| Production profile configuration/persistence | 58 | Strict presets/config, atomic commits, unrelated-key retention, CRUD and limits with in-memory Android adapters |
 | Production Ambilight controller | 29 | Loopback HTTP: advertised manual styles, palette requests, byte validation and brightness readback |
 | Production palette/conversion classes | 53 | Protocol ranges, golden values, preset matching and Hue conversion |
 | Hue UI with HTTPS fixture | 26 | Remote/touch navigation, coalescing, no extra catalog reads, stale/slow/error replies, stable pixels outside the slider and scoped scenes |
@@ -25,11 +25,11 @@ Run `python3 tests/check_gitignore.py` to check Git's actual ignore behavior and
 | UniFi local adapter | 10 | Synthetic pinned HTTPS, explicit site, pagination, encrypted configuration, rejected host/site/key, stale/recovery and redaction |
 | Native UniFi inventory | 10 | Compact indicator, bounds, pagination, unknown/stale/recovery, Back and GET-only upstream calls |
 | Passive network UI | 6 | Home shortcut, Android source/caveat, bounds, initial focus, refresh and Back |
-| Home layout geometry | 1,290,240 exhaustive + 163,840 seeded | All retained eight-slot configurations, plus 4,096 seeded ten-slot orders × camera/Hue visibility × app count 0–4 × two layouts; bounds, overlap and D-pad reachability |
+| Home layout geometry | 1,290,240 exhaustive + 327,680 seeded | All retained eight-slot configurations, plus 4,096 seeded ten-slot orders × camera/Hue visibility × app count 0–4 × two layouts, plus 163,840 fourteen-slot/favorite cases; bounds, overlap and D-pad reachability |
 | Native appearance | 19 | Complete validation, rendered order, compact camera, actual D-pad traversal, four themes, focus/detail-control retention and no light commands |
 | Hue standby automation | 18 | Actual emulator screen-state broadcasts with loopback Hue, default/disabled behavior, validation, scoped off, no wake-on/retry and stale target suppression |
 | Color-key native events | 12 | Android code mapping, repeat/key-up/cancel suppression, disabled action and custom System/Apps navigation on the isolated emulator |
-| Web state/payload logic | 156 | Independent drafts, installed-app selection/limit/availability, explicit profile type/identity/modified status, presentation, integration gates and save/error/session handling |
+| Web state/payload logic | 173 | Independent drafts, installed-app selection/limit/availability, explicit profile type/identity/modified status, presentation, integration gates and save/error/session handling |
 
 For 0.8.0 the palette, web, UniFi adapter/inventory, network and screensaver suites were repeated. The most recent complete Ambilight/general navigation suite runs remain the 0.7.0 component evidence; the 26-check Hue suite was rerun for 0.10.0.
 
@@ -274,3 +274,17 @@ The primary-TV pass completed 25 install/API/native assertions: installed hash/r
 ## Centered native legend (0.13.2)
 
 On the primary TV, screenshot pixels established the complete visible group bounds at four, two and one enabled key, each centered within 5 px of the 960 px virtual-canvas midpoint. Temporary assignment changes were guarded against concurrent configuration changes and the exact original complete profile was restored. Six installation/API checks verified retained state and installed hash/version. These drawing checks do not claim new physical-remote action acceptance or exhaustive font/language coverage. Both signed builds and the existing 156 web checks also passed.
+
+## Direct favorites (0.14.0)
+
+Run `python3 tests/check_profiles.py`, `node tests/check_web.cjs` and `python3 tests/check_home_layout.py`. Final counts are 58, 173 and the retained 1,290,240 + 163,840 cases plus 163,840 new seeded fourteen-slot cases. The new checks cover strict input/camera references, opt-in behavior, drafts, source refresh, max-three selection, hidden camera favorites, missing entries, profile integration, pending/error recovery, immediate post-save editability and three-row preview. Fourteen-slot coverage uses 512 seeded orders across camera/Hue/app/favorite/input visibility and both layouts; it is not every fourteen-factorial permutation.
+
+For an explicitly selected disposable emulator with the current same-key ARM64 test package, run:
+
+```sh
+python3 tests/integration/favorites_ui.py --serial emulator-5580 --output test-results/favorites
+```
+
+The runner refuses non-emulator targets. It creates synthetic camera records, resets its isolated favorite/profile test preferences and intercepts app launches. Its 113 assertions cover production storage/discovery, unknown-target atomic rejection, exact camera intent, removed target/default distinction, hidden camera dispatch, stale HDMI rejection, custom/legacy profile application, fourteen native tiles and actual D-pad paths to/from the third row/network. It starts no real camera stream and cannot prove successful physical HDMI handoff. The final native screenshot was visually reviewed; source-specific subtitles and compact labels fit their cards.
+
+The actual web fixture/browser verified explicit HDMI + three-camera save/reload, a preview with those destinations, selected-checkbox recovery and 320/390/768/1280 px without body overflow. Public desktop/phone favorites screenshots are synthetic and reviewed. Both signed builds passed. No physical TV was updated or used for this release's acceptance; the owner deferred installation after an unreachable-network preflight.

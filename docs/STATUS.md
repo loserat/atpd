@@ -2,13 +2,21 @@
 
 [Documentation](README.md) · [Testing](TESTING.md) · [Earlier evidence](VALIDATION-HISTORY.md)
 
-**November 14, 2026 · 0.13.3 · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
+**November 17, 2026 · 0.14.0 source/build · experimental beta.** Installed behavior, fixture checks and real provider acceptance are distinguished below.
 
-The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.13.3 is built and installed on the primary TV; the second TV remains on its last verified 0.11.6. Both use the same source with independent device settings.
+The [roadmap](ROADMAP.md) separately records proposed extensions. Version 0.14.0 is built and tested locally, with physical installation deferred at the owner's request. The primary TV was last verified on 0.13.3 and the second on 0.11.6; these historical device versions were not reconfirmed in this task. Both use the same source with independent device settings.
 
-## Current screenshot gallery (documentation-only refresh)
+## 0.14.0 direct Home favorites
 
-All 29 reviewed screenshots now show 0.13.3: 14 native captures from an isolated emulator and 15 desktop/phone web captures with synthetic data. The public APK and emulator package share identical application DEX. The native capture run passed 27 GUI checks; visual review and local OCR cover the publication images. Theme examples retain a deliberate reordered layout while the main Home image shows the shared baseline, centered key legend and green WLAN symbol. The web images include current profiles/app selection and the GitHub/version footer. [Provenance](UI.md#screenshot-gallery-refresh-0133). No production code or physical TV was changed/contacted.
+- The ninth web section, **Favoriten**, configures one named HDMI destination and three camera references. Fresh local inventories identify missing sources; drafts survive refresh/failure and covered saves are interlocked. Saving/profile application never launches a source. Source references are validated before one preference commit; URLs/intents/provider fields are excluded.
+- Home adds four movable positional slots. Old six/eight/ten-item orders preserve relative positions; defaults leave direct favorites off. New custom profiles capture favorites, while presets/legacy snapshots retain the current choice. Camera visibility hides/suppresses camera favorite launch. Explicit missing camera IDs cannot fall back during playback startup.
+- Both public/private signed builds, 58 profile/config checks and 173 web regressions passed. Geometry passed 1,290,240 exhaustive retained eight-slot cases, 163,840 seeded ten-slot cases and 163,840 seeded fourteen-slot cases. Eleven to fourteen visible cards use three compact rows; source labels/details fit their cards and decorative compact-card dots no longer overlap titles.
+- **113 isolated-emulator assertions passed**, covering real save/rejection behavior, retained missing entries, intercepted exact camera dispatch with no stream start, suppressed hidden/missing targets, custom/legacy profiles, native fourteen-tile bounds/focus graph and actual D-pad movement through three rows/network. Browser save/reload, retained selection and 320/390/768/1280 px widths passed. These are not physical HDMI handoff or real camera playback acceptance.
+- The home-TV preflight reported network unreachable. The owner explicitly selected finish/build/GitHub only; no installation, source selection, lighting action or physical-TV reconfiguration occurred. The first native capture pass had 107 assertions; actual focus and legacy-profile checks expanded the final pass to 113. Browser review found and fixed disabled selected camera checkboxes after save; a regression and browser retest passed. [Guide and API](FAVORITES.md).
+
+## Screenshot gallery baseline (0.13.3 documentation-only refresh)
+
+The 29 baseline gallery screenshots show 0.13.3; two additional favorite-settings views show 0.14.0. The baseline consists of 14 native captures from an isolated emulator and 15 desktop/phone web captures with synthetic data. The public APK and emulator package share identical application DEX. The native capture run passed 27 GUI checks; visual review and local OCR cover the publication images. Theme examples retain a deliberate reordered layout while the main Home image shows the shared baseline, centered key legend and green WLAN symbol. The web images include current profiles/app selection and the GitHub/version footer. [Provenance](UI.md#screenshot-gallery-refresh-0133). No production code or physical TV was changed/contacted.
 
 ## 0.13.3 recognizable Home connection icon
 

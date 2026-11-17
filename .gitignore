@@ -75,3 +75,7 @@ hue-bridge-local.json
 !/docs/images/web-tv-mobile.jpg
 !/docs/images/web-tv.jpg
 !/docs/images/web-unifi.jpg
+
+# Reviewed synthetic direct-favorites settings
+!/docs/images/web-favorites.jpg
+!/docs/images/web-favorites-mobile.jpg

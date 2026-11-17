@@ -187,6 +187,8 @@ final class AdminServer implements Closeable {
             else if(method.equals("POST")&&path.equals("/api/appearance"))result=HomeAppearance.save(context,new JSONObject(body));
             else if(method.equals("GET")&&path.equals("/api/integrations"))result=IntegrationSettings.view(context);
             else if(method.equals("POST")&&path.equals("/api/integrations"))result=IntegrationSettings.save(context,new JSONObject(body));
+            else if(method.equals("GET")&&path.equals("/api/favorites"))result=HomeFavorites.view(context);
+            else if(method.equals("POST")&&path.equals("/api/favorites"))result=HomeFavorites.save(context,new JSONObject(body));
             else if(method.equals("GET")&&path.equals("/api/app-shortcuts"))result=AppShortcuts.view(context);
             else if(method.equals("POST")&&path.equals("/api/app-shortcuts"))result=AppShortcuts.save(context,new JSONObject(body));
             else if(method.equals("GET")&&path.equals("/api/profiles"))result=DashboardProfiles.view(context);
@@ -233,7 +235,7 @@ final class AdminServer implements Closeable {
         for(int i=0;i<cameras.length();i++)if(cameras.getJSONObject(i).optString("id").equals(library.optString("defaultCameraId")))camera=cameras.getJSONObject(i);
         return new JSONObject().put("display",display).put("camera",camera).put("cameras",cameras).put("defaultCameraId",library.optString("defaultCameraId"))
             .put("device",new JSONObject().put("manufacturer",android.os.Build.MANUFACTURER).put("model",android.os.Build.MODEL).put("displayName",p.getString("device_display_name",android.os.Build.MANUFACTURER+" "+android.os.Build.MODEL)))
-            .put("interface",UiSettings.view(context)).put("appearance",HomeAppearance.view(context)).put("remote",RemoteShortcuts.view(context)).put("integrations",IntegrationSettings.view(context)).put("appShortcuts",AppShortcuts.view(context)).put("version","0.13.3");
+            .put("interface",UiSettings.view(context)).put("appearance",HomeAppearance.view(context)).put("remote",RemoteShortcuts.view(context)).put("integrations",IntegrationSettings.view(context)).put("appShortcuts",AppShortcuts.view(context)).put("favorites",HomeFavorites.view(context)).put("version","0.14.0");
     }
     private void saveCamera(JSONObject data)throws Exception{
         String name=data.optString("name").trim();if(name.isEmpty()||name.length()>80)throw new IOException("Kameraname fehlt");

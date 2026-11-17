@@ -23,7 +23,7 @@ public final class ProfileChecks {
   JSONObject badOrder=copy(standard);badOrder.getJSONObject("appearance").put("order",new JSONArray(Arrays.asList("ambilight","cameras")));rejects("Partial layout rejected",()->ProfileConfig.normalize(badOrder));
   JSONObject badFont=copy(standard);badFont.getJSONObject("interface").put("textFont","external-font");rejects("External font rejected",()->ProfileConfig.normalize(badFont));
   JSONObject badKey=copy(standard);badKey.getJSONObject("remote").put("red","intent:anything");rejects("Arbitrary intents rejected",()->ProfileConfig.normalize(badKey));
-  JSONObject legacy=copy(standard);legacy.getJSONObject("appearance").put("order",new JSONArray(Arrays.asList("system","inputs","tv","hue","cameras","ambilight")));check("Legacy profile order normalizes without reordering",ProfileConfig.normalize(legacy).getJSONObject("appearance").getJSONArray("order").getString(0).equals("system")&&ProfileConfig.normalize(legacy).getJSONObject("appearance").getJSONArray("order").length()==10);
+  JSONObject legacy=copy(standard);legacy.getJSONObject("appearance").put("order",new JSONArray(Arrays.asList("system","inputs","tv","hue","cameras","ambilight")));check("Legacy profile order normalizes without reordering",ProfileConfig.normalize(legacy).getJSONObject("appearance").getJSONArray("order").getString(0).equals("system")&&ProfileConfig.normalize(legacy).getJSONObject("appearance").getJSONArray("order").length()==14);
   for(Object value:new Object[]{"","  ","x\ny",new String(new char[41]).replace('\0','x'),42})rejects("Invalid profile name rejected "+count,()->ProfileConfig.name(value));
   check("Names trim and preserve Unicode",ProfileConfig.name("  Kino 🌙  ").equals("Kino 🌙"));
   JSONObject initial=DashboardProfiles.view(C);check("Fresh store offers two presets and recognizes Standard",initial.getJSONArray("profiles").length()==2&&initial.getString("activeId").equals("standard")&&initial.getInt("limit")==8);
@@ -63,6 +63,14 @@ public final class ProfileChecks {
   JSONObject same=DashboardProfiles.save(C,request(one).put("name","Named standard").put("type","standard"));DashboardProfiles.apply(C,request(one));check("Explicit custom selection wins over an identical builtin",DashboardProfiles.view(C).getString("selectedId").equals(one)&&DashboardProfiles.view(C).getString("activeId").equals(one));
   AdminServer.P.values.put("home_theme","abendrot");JSONObject changed=DashboardProfiles.view(C);check("Edited custom profile retains its selected name and reports modified",changed.getString("selectedId").equals(one)&&changed.getString("activeId").isEmpty()&&changed.getBoolean("modified"));
   DashboardProfiles.rename(C,request(one).put("name","Renamed selected"));check("Renaming selected profile keeps its type",firstCustom(DashboardProfiles.view(C)).getJSONObject("config").getString("type").equals("standard"));
+  JSONObject favorites=FavoriteConfig.empty();favorites.getJSONObject("input").put("enabled",true).put("id","test.pkg/.Input/HW4");favorites.put("cameras",new JSONArray(Arrays.asList("front","garden","garage")));
+  check("Favorite local references normalize without provider fields",FavoriteConfig.normalize(favorites).getJSONArray("cameras").length()==3);
+  JSONObject tooMany=copy(favorites).put("cameras",new JSONArray(Arrays.asList("a","b","c","d")));rejects("Fourth camera favorite rejected",()->FavoriteConfig.normalize(tooMany));
+  JSONObject duplicateFavorite=copy(favorites).put("cameras",new JSONArray(Arrays.asList("a","a")));rejects("Duplicate camera favorites rejected",()->FavoriteConfig.normalize(duplicateFavorite));
+  JSONObject noInput=copy(favorites);noInput.getJSONObject("input").put("id","");rejects("Enabled HDMI requires a target",()->FavoriteConfig.normalize(noInput));
+  JSONObject providerFavorite=copy(favorites).put("url","rtsps://example.invalid");rejects("Favorite provider fields rejected",()->FavoriteConfig.normalize(providerFavorite));
+  JSONObject withFavorites=copy(standard).put("favorites",favorites);check("Favorite config belongs to profile snapshots",ProfileConfig.normalize(withFavorites).getJSONObject("favorites").toString().equals(FavoriteConfig.normalize(favorites).toString()));
+  check("Legacy snapshots normalize favorites disabled",ProfileConfig.normalize(standard).getJSONObject("favorites").getJSONArray("cameras").length()==0);
   System.out.println(count+" profile configuration/persistence checks passed; in-memory Android adapters only.");
  }
 }
@@ -77,3 +85,5 @@ class AdminServer {
 class AppShortcuts {static JSONObject config(Context c)throws Exception{if(AdminServer.P.contains("favorite_apps"))return AppSelection.normalize(new JSONObject().put("enabled",AdminServer.P.getBoolean("show_media_apps",false)).put("apps",new JSONArray(AdminServer.P.getString("favorite_apps","[]"))));return AppSelection.normalize(new JSONObject().put("ard",AdminServer.P.getBoolean("app_shortcut_ard",false)).put("zdf",AdminServer.P.getBoolean("app_shortcut_zdf",false)));}}
 class UiSettings {static JSONObject view(Context c)throws Exception{return new JSONObject().put("language",AdminServer.P.getString("ui_language","de")).put("textFont",AdminServer.P.getString("ui_text_font","sans")).put("clockFont",AdminServer.P.getString("ui_clock_font","sans"));}}
 class RemoteShortcuts {static JSONObject view(Context c)throws Exception{JSONObject o=new JSONObject();String[] keys={"red","green","yellow","blue"},defaults={"cameras","ambilight","hue","inputs"};for(int n=0;n<4;n++)o.put(keys[n],AdminServer.P.getString("remote_"+keys[n],defaults[n]));return o;}}
+
+class HomeFavorites {static JSONObject config(Context c)throws Exception{String raw=AdminServer.P.getString("home_favorites","");return raw.isEmpty()?FavoriteConfig.empty():FavoriteConfig.normalize(new JSONObject(raw));}}

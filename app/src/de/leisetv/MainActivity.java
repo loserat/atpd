@@ -162,6 +162,7 @@ public final class MainActivity extends Activity {
             case "tv":return new HomeActionTile(UiText.t("Fernsehen"),UiText.t("TV-Programm"),"tv",()->openTV());
             case "inputs":return new HomeActionTile(UiText.t("Geräte"),UiText.t("HDMI & Zuspieler"),"devices",()->open(new Intent(this,InputsActivity.class)));
             case "system":return new HomeActionTile("System",UiText.t("Einstellungen"),"settings",()->showSystem());
+            case "apple-tv":case "camera1":case "camera2":case "camera3":return new HomeActionTile(HomeFavorites.label(this,id),HomeFavorites.detail(this,id),id.equals("apple-tv")?"devices":"camera",()->HomeFavorites.open(this,id));
             case "ard":case "zdf":case "app3":case "app4":return new HomeActionTile(AppShortcuts.label(this,id),UiText.t("App öffnen"),"apps",()->AppShortcuts.open(this,id));
             default:throw new IllegalArgumentException("Unknown Home tile");
         }
@@ -173,8 +174,8 @@ public final class MainActivity extends Activity {
         stage(false);homeDirty=false;appsFromSystem=false;
         List<HomeLayout.Slot> slots;
         boolean camera=AdminServer.preferences(this).getBoolean("show_camera",true);
-        try{org.json.JSONObject appearance=HomeAppearance.view(this);slots=HomeLayout.positions(HomeAppearance.order(appearance),camera,IntegrationSettings.hue(this),AppShortcuts.count(this),appearance.getString("layout"));}
-        catch(Exception error){slots=HomeLayout.positions(Arrays.asList(HomeLayout.DEFAULT_ORDER),camera,IntegrationSettings.hue(this),AppShortcuts.count(this),"focus");}
+        try{org.json.JSONObject appearance=HomeAppearance.view(this);slots=HomeLayout.positions(HomeAppearance.order(appearance),camera,IntegrationSettings.hue(this),AppShortcuts.count(this),HomeFavorites.cameraCount(this),HomeFavorites.inputEnabled(this),appearance.getString("layout"));}
+        catch(Exception error){slots=HomeLayout.positions(Arrays.asList(HomeLayout.DEFAULT_ORDER),camera,IntegrationSettings.hue(this),AppShortcuts.count(this),HomeFavorites.cameraCount(this),HomeFavorites.inputEnabled(this),"focus");}
         List<Tile> home=new ArrayList<>();
         for(HomeLayout.Slot slot:slots){Tile tile=homeTile(slot.id,slot.h>180);tile.homeId=slot.id;place(tile,slot.x,slot.y,slot.w,slot.h);home.add(tile);}
         for(int i=0;i<home.size();i++){
@@ -184,7 +185,7 @@ public final class MainActivity extends Activity {
         networkButton=new NetworkBadge(this,()->open(new Intent(this,NetworkActivity.class)));
         FrameLayout.LayoutParams netLayout=new FrameLayout.LayoutParams(Math.round(440*scale),Math.round(64*scale));netLayout.leftMargin=Math.round(offsetX+1384*scale);netLayout.topMargin=Math.round(offsetY+914*scale);networkButton.setId(View.generateViewId());root.addView(networkButton,netLayout);
         int nearest=home.size()-1,distance=Integer.MAX_VALUE;
-        for(int i=0;i<home.size();i++)if(slots.get(i).row==1){home.get(i).setNextFocusDownId(networkButton.getId());int delta=Math.abs(slots.get(i).center()-1604);if(delta<distance){distance=delta;nearest=i;}}
+        for(int i=0;i<home.size();i++)if(slots.get(i).row==slots.get(slots.size()-1).row){home.get(i).setNextFocusDownId(networkButton.getId());int delta=Math.abs(slots.get(i).center()-1604);if(delta<distance){distance=delta;nearest=i;}}
         networkButton.setNextFocusUpId(home.get(nearest).getId());networkButton.setNextFocusDownId(networkButton.getId());networkButton.setNextFocusLeftId(networkButton.getId());networkButton.setNextFocusRightId(networkButton.getId());
         View target=home.get(0);if("network".equals(focus))target=networkButton;else for(Tile tile:home)if(tile.homeId.equals(focus))target=tile;
         TvStyle.focus(target);Log.i("LeiseTV","screen:home");
@@ -376,13 +377,13 @@ public final class MainActivity extends Activity {
             c.save();c.scale(getWidth()/(float)virtualW,getHeight()/(float)virtualH);boolean focus=isFocused(),compact=virtualH<180;
             int accent=TvStyle.accent(kind);TvStyle.card(c,p,5,5,virtualW-5,virtualH-5,focus,26,accent);
             TvStyle.icon(c,p,kind,compact?28:36,compact?40:30,compact?38:46,accent);
-            if("ambilight".equals(kind)){
+            if("ambilight".equals(kind)&&!compact){
                 int[] colors={0xffD8B98B,0xffB8E2BE,0xff86B9D6,0xffB9A7D2};
                 for(int i=0;i<4;i++){p.setColor(colors[i]);c.drawCircle(virtualW-172+i*30,55,6,p);}
             }
             TvStyle.arrow(c,p,virtualW-43,compact?66:53,focus);
             p.setTextSize(compact?31:44);p.setTypeface(TvStyle.NORMAL);text(c,p,TvStyle.fit(p,title,virtualW-(compact?144:80)),compact?88:38,compact?64:virtualH-87,compact?31:44,INK,false);
-            text(c,p,subtitle,compact?90:40,compact?99:virtualH-44,compact?18:23,MUTED,false);c.restore();
+            p.setTextSize(compact?18:23);p.setTypeface(TvStyle.NORMAL);text(c,p,TvStyle.fit(p,subtitle,virtualW-(compact?112:80)),compact?90:40,compact?99:virtualH-44,compact?18:23,MUTED,false);c.restore();
         }
     }
 }
